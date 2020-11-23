@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "chemise-blanche-homme-slim-fit-marque-chemises.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "chemise-blanche-homme-slim-fit-marque-chemises@2x.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "chemise-blanche-homme-slim-fit-marque-chemises@3x.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
