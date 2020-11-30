@@ -17,7 +17,7 @@ struct CardItemView: View {
             HStack {
                 Image(systemName: card.profileImageName)
                     .foregroundColor(.gray)
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    .font(.title)
                 Text(card.profileName)
                 Spacer()
             }
@@ -34,7 +34,7 @@ struct CardItemView: View {
                         HStack {
                             Text(card.title)
                                 .font(.subheadline)
-                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                .fontWeight(.bold)
                             Spacer()
                         }
                         Text(card.category)

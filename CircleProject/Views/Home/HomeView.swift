@@ -52,6 +52,7 @@ struct HomeView: View {
                                     .foregroundColor(.gray)
                             }).padding(.leading)
                             
+                            
                             if showAllCirleItems{
                                 ScrollView(.vertical){
                                     LazyVGrid(columns: [GridItem(),GridItem()], content: /*@START_MENU_TOKEN@*/{

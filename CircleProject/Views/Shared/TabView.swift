@@ -33,10 +33,7 @@ struct TabUIView: View {
             CircleView()
                 .tabItem {
 //                    Image(systemName: "circle.grid.cross.fill")
-                    Image("logo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width:10,height:10)
+                    Image("logo2")
 //                        .padding(.top)
 //                    Text("Circle")
                 }

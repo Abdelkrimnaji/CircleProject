@@ -12,6 +12,7 @@ struct RegisterView: View {
     var with = UIScreen.main.bounds.width
     @State private var registerStep = 33.33
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var isCategorySelectionPresented = false
     var body: some View {
         VStack {
             if registerStep == 33.33{
@@ -78,7 +79,7 @@ struct RegisterView: View {
             }
             
             Spacer()
-            
+            if registerStep <= 100{
             VStack {
                 HStack{
                     Spacer()
@@ -86,11 +87,17 @@ struct RegisterView: View {
                 }
                 ProgressView("", value: registerStep, total: 100)
             }.padding()
-            
-            Button(action: {self.registerStep+=33.33}, label: {
+            }
+            Button(action: {
+                    self.registerStep+=33.33
+                if registerStep > 100{
+                    self.isCategorySelectionPresented.toggle()
+                }
+            }, label: {
                 Text("Suivant")
                     .foregroundColor(.white)
             })
+            .fullScreenCover(isPresented: $isCategorySelectionPresented, content: CategorySelectionView.init)
             .frame(width: with*0.8)
             .padding()
             .background(Color(red: 0.996, green: 0.557, blue: 0.576))
