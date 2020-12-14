@@ -13,6 +13,12 @@ struct RegisterView: View {
     @State private var registerStep = 33.33
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var isCategorySelectionPresented = false
+    @State var isChecked:Bool = false
+    @State var checklistItems = [
+        ChecklistItem(name: "Homme"),
+        ChecklistItem(name: "Femme"),
+        ChecklistItem(name: "Autre")
+    ]
     var body: some View {
         VStack {
             if registerStep == 33.33{
@@ -34,8 +40,41 @@ struct RegisterView: View {
                             .font(.title2)
                             .padding(.leading, 5)
                     }.overlay(Rectangle().frame(width: 2, height: nil, alignment: .leading).foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576)), alignment: .leading)
+                    
+                    
                     Text("Vous vous définissez en tant que ?")
-                        .font(.title2)
+                        .font(.title3)
+//                    Button(action: {isChecked.toggle()}){
+//                        HStack{ Image(systemName: isChecked ? "checkmark.square": "square")
+//                            Text("title")
+//                        }
+//                    }
+                    
+//                    List {
+                        ForEach(checklistItems) { checklistItem in
+                            HStack {
+                                Image(systemName: checklistItem.isChecked ? "checkmark.square": "square")
+//                                Spacer()
+                                Text(checklistItem.name)
+                            }
+                            .onTapGesture {
+                                if let matchingIndex =
+                                  self.checklistItems.firstIndex(where: { $0.id == checklistItem.id }) {
+////                                    if !self.checklistItems[0]{
+                                
+////                                    }
+                                  self.checklistItems[matchingIndex].isChecked.toggle()
+//                                    print(matchingIndex)
+                                }
+                                for number in 0...2 {
+                                    if number != self.checklistItems.firstIndex(where: { $0.id == checklistItem.id }) {
+                                        self.checklistItems[0].isChecked.toggle()
+                                    }
+                                }
+//                                self.printChecklistContents()
+                              }
+                            }
+//                    }
                 }.padding(.top)
             }else{
                 VStack(alignment: .leading) {
@@ -80,16 +119,16 @@ struct RegisterView: View {
             
             Spacer()
             if registerStep <= 100{
-            VStack {
-                HStack{
-                    Spacer()
-                    Text("\(registerStep/33.33, specifier: "%.f") sur 3")
-                }
-                ProgressView("", value: registerStep, total: 100)
-            }.padding()
+                VStack {
+                    HStack{
+                        Spacer()
+                        Text("\(registerStep/33.33, specifier: "%.f") sur 3")
+                    }
+                    ProgressView("", value: registerStep, total: 100)
+                }.padding()
             }
             Button(action: {
-                    self.registerStep+=33.33
+                self.registerStep+=33.33
                 if registerStep > 100{
                     self.isCategorySelectionPresented.toggle()
                 }
@@ -113,9 +152,7 @@ struct RegisterView: View {
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button(action: { self.presentationMode.wrappedValue.dismiss()}) {
-            HStack {
-                Image(systemName: "arrow.left")
-            }
+            Image(systemName: "arrow.left")
         })
     }
 }

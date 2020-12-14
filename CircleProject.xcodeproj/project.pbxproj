@@ -3,10 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		271255BB257E32930075040C /* ApiCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271255BA257E32930075040C /* ApiCalls.swift */; };
+		27125603257E7D230075040C /* testObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27125602257E7D230075040C /* testObj.swift */; };
+		2718CFC82577A4DC008F8D3A /* GoogleLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2718CFC72577A4DC008F8D3A /* GoogleLogin.swift */; };
+		2718CFD52577AF54008F8D3A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2718CFD42577AF54008F8D3A /* GoogleService-Info.plist */; };
+		2718CFE42577C54D008F8D3A /* Pods_CircleProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F704F6F07DD0F03E6DE2404C /* Pods_CircleProject.framework */; };
+		2718CFE52577C54D008F8D3A /* Pods_CircleProject.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F704F6F07DD0F03E6DE2404C /* Pods_CircleProject.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2726CED5255874CA003564C4 /* CircleProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2726CED4255874CA003564C4 /* CircleProjectApp.swift */; };
 		2726CED7255874CA003564C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2726CED6255874CA003564C4 /* ContentView.swift */; };
 		2726CED9255874CE003564C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2726CED8255874CE003564C4 /* Assets.xcassets */; };
@@ -21,13 +27,33 @@
 		2747E93325653EC800FD1537 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2747E93225653EC800FD1537 /* MenuView.swift */; };
 		276BE7AE2559B1400000889A /* FirstScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BE7AD2559B1400000889A /* FirstScreenView.swift */; };
 		276BE7B12559B87F0000889A /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BE7B02559B87F0000889A /* RegisterView.swift */; };
+		278289642575561000762B25 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 278289632575561000762B25 /* FacebookLogin */; };
+		278289662575568200762B25 /* FbLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278289652575568200762B25 /* FbLogin.swift */; };
 		279F5862256681D8000577DA /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F5861256681D8000577DA /* CategorySelectionView.swift */; };
 		27B82BF825602CBA001F0760 /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B82BF725602CBA001F0760 /* ConnectionView.swift */; };
 		27B82BFB25603C20001F0760 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B82BFA25603C20001F0760 /* TabView.swift */; };
 		27F6E77D256690C500B3B862 /* CategoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F6E77C256690C500B3B862 /* CategoryItemView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2718CFE62577C54D008F8D3A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2718CFE52577C54D008F8D3A /* Pods_CircleProject.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		271255BA257E32930075040C /* ApiCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCalls.swift; sourceTree = "<group>"; };
+		27125602257E7D230075040C /* testObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testObj.swift; sourceTree = "<group>"; };
+		2718CFC72577A4DC008F8D3A /* GoogleLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLogin.swift; sourceTree = "<group>"; };
+		2718CFD42577AF54008F8D3A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2726CED1255874CA003564C4 /* CircleProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CircleProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2726CED4255874CA003564C4 /* CircleProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProjectApp.swift; sourceTree = "<group>"; };
 		2726CED6255874CA003564C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,10 +70,14 @@
 		2747E93225653EC800FD1537 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		276BE7AD2559B1400000889A /* FirstScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstScreenView.swift; sourceTree = "<group>"; };
 		276BE7B02559B87F0000889A /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		278289652575568200762B25 /* FbLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FbLogin.swift; sourceTree = "<group>"; };
 		279F5861256681D8000577DA /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
 		27B82BF725602CBA001F0760 /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
 		27B82BFA25603C20001F0760 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		27F6E77C256690C500B3B862 /* CategoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemView.swift; sourceTree = "<group>"; };
+		27FB9420D724E2022C5ED08B /* Pods-CircleProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CircleProject.release.xcconfig"; path = "Target Support Files/Pods-CircleProject/Pods-CircleProject.release.xcconfig"; sourceTree = "<group>"; };
+		B427701B51A473A2D8BF0F53 /* Pods-CircleProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CircleProject.debug.xcconfig"; path = "Target Support Files/Pods-CircleProject/Pods-CircleProject.debug.xcconfig"; sourceTree = "<group>"; };
+		F704F6F07DD0F03E6DE2404C /* Pods_CircleProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CircleProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,17 +85,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2718CFE42577C54D008F8D3A /* Pods_CircleProject.framework in Frameworks */,
+				278289642575561000762B25 /* FacebookLogin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2718CFC62577A4B9008F8D3A /* Social media login */ = {
+			isa = PBXGroup;
+			children = (
+				278289652575568200762B25 /* FbLogin.swift */,
+				2718CFC72577A4DC008F8D3A /* GoogleLogin.swift */,
+			);
+			path = "Social media login";
+			sourceTree = "<group>";
+		};
 		2726CEC8255874CA003564C4 = {
 			isa = PBXGroup;
 			children = (
+				2718CFD42577AF54008F8D3A /* GoogleService-Info.plist */,
 				2726CED3255874CA003564C4 /* CircleProject */,
 				2726CED2255874CA003564C4 /* Products */,
+				BDE4F712F69823B232D2471E /* Pods */,
+				30FBCF7A11E776F9E074D23A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,6 +132,7 @@
 				2726CED8255874CE003564C4 /* Assets.xcassets */,
 				2726CEDD255874CE003564C4 /* Info.plist */,
 				2726CEDA255874CE003564C4 /* Preview Content */,
+				27125602257E7D230075040C /* testObj.swift */,
 			);
 			path = CircleProject;
 			sourceTree = "<group>";
@@ -113,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				2726CEF825587E52003564C4 /* DataStore.swift */,
+				271255BA257E32930075040C /* ApiCalls.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -182,6 +228,7 @@
 		27F6E7A9256AB35800B3B862 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				2718CFC62577A4B9008F8D3A /* Social media login */,
 				276BE7AD2559B1400000889A /* FirstScreenView.swift */,
 				276BE7B02559B87F0000889A /* RegisterView.swift */,
 				27B82BF725602CBA001F0760 /* ConnectionView.swift */,
@@ -191,6 +238,23 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		30FBCF7A11E776F9E074D23A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F704F6F07DD0F03E6DE2404C /* Pods_CircleProject.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BDE4F712F69823B232D2471E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B427701B51A473A2D8BF0F53 /* Pods-CircleProject.debug.xcconfig */,
+				27FB9420D724E2022C5ED08B /* Pods-CircleProject.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -198,15 +262,22 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2726CEE0255874CE003564C4 /* Build configuration list for PBXNativeTarget "CircleProject" */;
 			buildPhases = (
+				CFB2FA4D7C76E7F134FE4CA5 /* [CP] Check Pods Manifest.lock */,
 				2726CECD255874CA003564C4 /* Sources */,
 				2726CECE255874CA003564C4 /* Frameworks */,
 				2726CECF255874CA003564C4 /* Resources */,
+				60EE6B7EBC9BAAFCD9BBC796 /* [CP] Embed Pods Frameworks */,
+				F7C0DBF9512353C4A014AE65 /* [CP] Copy Pods Resources */,
+				2718CFE62577C54D008F8D3A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = CircleProject;
+			packageProductDependencies = (
+				278289632575561000762B25 /* FacebookLogin */,
+			);
 			productName = CircleProject;
 			productReference = 2726CED1255874CA003564C4 /* CircleProject.app */;
 			productType = "com.apple.product-type.application";
@@ -234,6 +305,9 @@
 				Base,
 			);
 			mainGroup = 2726CEC8255874CA003564C4;
+			packageReferences = (
+				278289622575561000762B25 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+			);
 			productRefGroup = 2726CED2255874CA003564C4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -250,10 +324,70 @@
 			files = (
 				2726CEDC255874CE003564C4 /* Preview Assets.xcassets in Resources */,
 				2726CED9255874CE003564C4 /* Assets.xcassets in Resources */,
+				2718CFD52577AF54008F8D3A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		60EE6B7EBC9BAAFCD9BBC796 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CircleProject/Pods-CircleProject-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CircleProject/Pods-CircleProject-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CircleProject/Pods-CircleProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CFB2FA4D7C76E7F134FE4CA5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CircleProject-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7C0DBF9512353C4A014AE65 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CircleProject/Pods-CircleProject-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CircleProject/Pods-CircleProject-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CircleProject/Pods-CircleProject-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2726CECD255874CA003564C4 /* Sources */ = {
@@ -268,12 +402,16 @@
 				276BE7AE2559B1400000889A /* FirstScreenView.swift in Sources */,
 				2726CEF025587628003564C4 /* MessagesView.swift in Sources */,
 				2747E93325653EC800FD1537 /* MenuView.swift in Sources */,
+				2718CFC82577A4DC008F8D3A /* GoogleLogin.swift in Sources */,
 				279F5862256681D8000577DA /* CategorySelectionView.swift in Sources */,
 				27F6E77D256690C500B3B862 /* CategoryItemView.swift in Sources */,
 				2726CED7255874CA003564C4 /* ContentView.swift in Sources */,
 				2726CEFD25588005003564C4 /* CardItemView.swift in Sources */,
 				2726CEEC255875B4003564C4 /* SellView.swift in Sources */,
+				278289662575568200762B25 /* FbLogin.swift in Sources */,
+				27125603257E7D230075040C /* testObj.swift in Sources */,
 				2726CEF32558766B003564C4 /* CircleView.swift in Sources */,
+				271255BB257E32930075040C /* ApiCalls.swift in Sources */,
 				27B82BF825602CBA001F0760 /* ConnectionView.swift in Sources */,
 				2726CED5255874CA003564C4 /* CircleProjectApp.swift in Sources */,
 			);
@@ -400,6 +538,7 @@
 		};
 		2726CEE1255874CE003564C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B427701B51A473A2D8BF0F53 /* Pods-CircleProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -422,6 +561,7 @@
 		};
 		2726CEE2255874CE003564C4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27FB9420D724E2022C5ED08B /* Pods-CircleProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -464,6 +604,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		278289622575561000762B25 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		278289632575561000762B25 /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 278289622575561000762B25 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2726CEC9255874CA003564C4 /* Project object */;
 }
