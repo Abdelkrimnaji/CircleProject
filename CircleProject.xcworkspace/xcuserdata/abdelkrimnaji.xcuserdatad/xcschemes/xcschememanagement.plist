@@ -6,6 +6,11 @@
 	<dict>
 		<key>GoogleSignIn.xcscheme</key>
 		<dict>
+<<<<<<< HEAD
+=======
+			<key>isShown</key>
+			<true/>
+>>>>>>> api
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>

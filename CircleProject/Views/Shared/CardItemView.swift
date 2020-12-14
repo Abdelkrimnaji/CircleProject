@@ -15,7 +15,7 @@ struct CardItemView: View {
         VStack{
             Spacer()
             HStack {
-                Image(systemName: card.profileImageName)
+                Image(systemName: card.profileImage)
                     .foregroundColor(.gray)
                     .font(.title)
                 Text(card.profileName)
@@ -23,12 +23,10 @@ struct CardItemView: View {
             }
             Spacer()
             VStack {
-//                Spacer()
-                Image(card.imageName)
+                Spacer()
+                Image(card.cardImage)
                     .resizable()
                     .scaledToFit()
-//                    .overlay(Rectangle().stroke(Color.gray, lineWidth: 2))
-//                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gray, lineWidth: 2))
                 Spacer()
                     VStack(alignment: .leading){
                         HStack {
@@ -40,7 +38,8 @@ struct CardItemView: View {
                         Text(card.category)
                             .foregroundColor(.gray)
                             .font(.subheadline)
-                        Text("\(card.price, specifier: "%.2f")€")
+//                        Text("\(Int(card.price)!, specifier: "%.2f")€")
+                        Text("\(card.price)€")
                             .foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576))
                     }
                 Spacer()
@@ -48,14 +47,13 @@ struct CardItemView: View {
         }
         .frame(width: width*0.38, height:height*0.3)
         .padding()
-//        .overlay(Rectangle().stroke(Color.gray, lineWidth: 2))
         .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gray, lineWidth: 2))
     }
 }
 
 struct CardItemView_Previews: PreviewProvider {
     static var previews: some View {
-        CardItemView(card: CardItem(profileImageName: "person.crop.circle.fill", profileName: "So701", imageName: "clio", title: "Clio IV GT 2019", category: "Voiture", price: 15000))
+        CardItemView(card: CardItem(profileImage: "person.crop.circle.fill", card_id: "1", profileName: "So701", cardImage: "clio", title: "Clio IV GT 2019", category: "Voiture", price: "15000", description: ""))
 //        CardItemView(card: CardItem(profileImageName: "person.crop.circle.fill", profileName: "Abdoul701", imageName: "real", title: "Mallot \"Authentique\" Real", category: "Mode", price: 60))
     }
 }
