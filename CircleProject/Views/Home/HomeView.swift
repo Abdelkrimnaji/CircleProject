@@ -8,21 +8,15 @@
 import SwiftUI
 
 struct HomeView: View {
-    var circleCardList: [CardItem] = [
-        CardItem(profileImageName: "person.crop.circle.fill", profileName: "Abdoul701", imageName: "real", title: "Mallot \"Authentique\" Real", category: "Mode", price: 60),
-        CardItem(profileImageName: "person.crop.circle.fill", profileName: "Palermo70", imageName: "rolex", title: "Rolex Date Just", category: "Mode", price: 10000),
-        CardItem(profileImageName: "person.crop.circle.fill", profileName: "So701", imageName: "clio", title: "Clio IV GT 2019", category: "Voiture", price: 15000),
-        CardItem(profileImageName: "person.crop.circle.fill", profileName: "Abdoul701", imageName: "real", title: "Mallot \"Authentique\" Real", category: "Mode", price: 60),
-        CardItem(profileImageName: "person.crop.circle.fill", profileName: "Palermo70", imageName: "rolex", title: "Rolex Date Just", category: "Mode", price: 10000),
-        CardItem(profileImageName: "person.crop.circle.fill", profileName: "So701", imageName: "clio", title: "Clio IV GT 2019", category: "Voiture", price: 15000)
-    ]
+    
+    @State var objects: [CardItem] = []
     var desireCardList: [CardItem] = [
-        CardItem(profileImageName: "person.crop.circle.fill", profileName: "Jo du 77", imageName: "chemise", title: "Chemise", category: "Mode", price: 55),
-        CardItem(profileImageName: "person.crop.circle.fill", profileName: "Bob", imageName: "montre", title: "Fossil", category: "Mode", price: 150),
-        CardItem(profileImageName: "person.crop.circle.fill", profileName: "Donald", imageName: "2cv", title: "Citroen 2CV 1988", category: "Voiture", price: 150000),
-        CardItem(profileImageName: "person.crop.circle.fill", profileName: "Abdoul701", imageName: "real", title: "Mallot \"Authentique\" Real", category: "Mode", price: 60),
-        CardItem(profileImageName: "person.crop.circle.fill", profileName: "Palermo70", imageName: "rolex", title: "Rolex Date Just", category: "Mode", price: 10000),
-        CardItem(profileImageName: "person.crop.circle.fill", profileName: "So701", imageName: "clio", title: "Clio IV GT 2019", category: "Voiture", price: 15000)
+        CardItem(profileImage: "person.crop.circle.fill", card_id: "100", profileName: "Jo du 77", cardImage: "chemise", title: "Chemise", category: "Mode", price: "55", description: ""),
+        CardItem(profileImage: "person.crop.circle.fill", card_id: "101", profileName: "Bob", cardImage: "montre", title: "Fossil", category: "Mode", price: "150", description: ""),
+        CardItem(profileImage: "person.crop.circle.fill", card_id: "102", profileName: "Donald", cardImage: "2cv", title: "Citroen 2CV 1988", category: "Voiture", price: "150000", description: ""),
+        CardItem(profileImage: "person.crop.circle.fill", card_id: "103", profileName: "Abdoul701", cardImage: "real", title: "Mallot \"Authentique\" Real", category: "Mode", price: "60", description: ""),
+        CardItem(profileImage: "person.crop.circle.fill", card_id: "104", profileName: "Palermo70", cardImage: "rolex", title: "Rolex Date Just", category: "Mode", price: "10000", description: ""),
+        CardItem(profileImage: "person.crop.circle.fill", card_id: "105", profileName: "So701", cardImage: "clio", title: "Clio IV GT 2019", category: "Voiture", price: "15000", description: "")
     ]
     let colums = [
         GridItem(.adaptive(minimum: 150))
@@ -43,12 +37,10 @@ struct HomeView: View {
                                 .padding()
                             Divider()
                             Button(action: {
-                                //                                withAnimation {
                                 self.showAllCirleItems.toggle()
-                                //                                }
                             }
                             , label: {
-                                Text("Annonces selon vous cercles")
+                                Text("Annonces selon vos cercles")
                                     .foregroundColor(.gray)
                             }).padding(.leading)
                             
@@ -56,48 +48,37 @@ struct HomeView: View {
                             if showAllCirleItems{
                                 ScrollView(.vertical){
                                     LazyVGrid(columns: [GridItem(),GridItem()], content: /*@START_MENU_TOKEN@*/{
-                                        ForEach(circleCardList){ card in
-                                            CardItemView(card: card)
+                                        ForEach(objects, id:\.card_id){ object in
+                                            CardItemView(card: object)
                                         }
                                     })
                                 }
                             }else{
                                 ScrollView(.horizontal){
                                     LazyHGrid(rows: [GridItem()], content:{
-                                        ForEach(circleCardList){ card in
-                                            CardItemView(card: card)
+                                        ForEach(objects, id:\.card_id){ object in
+                                            CardItemView(card: object)
                                         }
-                                    }).padding(.leading)
+                                    })
+                                    .padding(.leading)
+                                    .onAppear{
+                                        Api().getObjects { (object) in
+                                            self.objects = object
+                                        }
+                                    }
                                 }
                                 .frame(height:height*0.4)
                             }
-                            
-                            //                            ScrollView(showAllCirleItems ? .vertical : .horizontal){
-                            //                                if showAllCirleItems {
-                            //                                    LazyVGrid(columns: [GridItem(),GridItem()], content: /*@START_MENU_TOKEN@*/{
-                            //                                        ForEach(circleCardList){ card in
-                            //                                            CardItemView(card: card)
-                            //                                                .transition(.move(edge: .top))
-                            //                                        }
-                            //                                    })
-                            //                                }else{
-                            //                                    LazyHGrid(rows: [GridItem()], content:{
-                            //                                        ForEach(circleCardList){ card in
-                            //                                            CardItemView(card: card)
-                            //                                                .transition(.move(edge: .leading))
-                            //                                        }
-                            //                                    }).padding(.leading)
-                            //                                }
-                            //                            }
                             Divider()
                             Button(action: {self.showAllDesireItems.toggle()}, label: {
                                 Text("Annonces selon vous envies")
                                     .foregroundColor(.gray)
                             }).padding(.leading)
+                            
                             if showAllDesireItems {
                                 ScrollView{
                                     LazyVGrid(columns: showAllDesireItems ? colums : [GridItem()], content: /*@START_MENU_TOKEN@*/{
-                                        ForEach(desireCardList){ card in
+                                        ForEach(desireCardList, id:\.card_id){ card in
                                             CardItemView(card: card)
                                         }
                                     })
@@ -105,12 +86,13 @@ struct HomeView: View {
                             }else{
                                 ScrollView(.horizontal){
                                     LazyHGrid(rows: [GridItem()], content:{
-                                        ForEach(desireCardList){ card in
+                                        ForEach(desireCardList, id:\.card_id){ card in
                                             CardItemView(card: card)
                                         }
                                     }).frame(height:height*0.4).padding(.leading)
                                 }
                             }
+                            
                             VStack(alignment: .leading){
                                 Divider().padding(.top)
                                 Text("Top annonces")

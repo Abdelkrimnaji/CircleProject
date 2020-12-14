@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ConnectionView: View {
-    var with = UIScreen.main.bounds.width
+    var width = UIScreen.main.bounds.width
     @State var email:String = ""
     @State var password:String = ""
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -38,11 +38,35 @@ struct ConnectionView: View {
                 .foregroundColor(.white)
                 .padding(10)
                 .fullScreenCover(isPresented: $isMainMenuPresented, content: TabUIView.init)
-                .frame(width: with*0.7)
+                .frame(width: width*0.7)
                 .background(Color(red: 0.996, green: 0.557, blue: 0.576))
             }
-            .frame(width: with*0.7)
+            .frame(width: width*0.7)
             .padding(.top)
+            VStack{
+                Text("ou continuez avec :")
+                    .padding()
+                HStack{
+                    FbLogin()
+                        .frame(width: width*0.15)
+                    Spacer()
+                    GoogleLogin()
+                        .frame(width: width*0.15)
+                }.frame(width: width*0.35)
+                HStack{
+                    Image("twitter")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: width*0.15)
+                    Spacer()
+                    Image("instagram")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: width*0.15)
+                }
+                .frame(width: width*0.35)
+                .padding(.top)
+            }.padding(.top)
             Spacer()
                 .navigationBarBackButtonHidden(true)
                 .navigationBarItems(leading: Button(action: {
