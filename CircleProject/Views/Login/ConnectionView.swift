@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ConnectionView: View {
     var width = UIScreen.main.bounds.width
-    @State var email:String = ""
+    @State var username:String = ""
     @State var password:String = ""
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var isMainMenuPresented = false
@@ -26,14 +26,20 @@ struct ConnectionView: View {
                     .foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576))
             }.padding(.bottom)
             VStack{
-                TextField("Email", text: $email)
+                TextField("Entrer votre pseudo", text: $username)
                     .padding(10)
                     .border(Color.gray)
-                TextField("Créer un mot de passe", text: $password)
+                TextField("Entrer votre mot de passe", text: $password)
                     .padding(10)
                     .border(Color.gray)
                 Button("Continuer") {
-                    self.isMainMenuPresented.toggle()
+                    Api().login(username: username,password: password) { (request,error)  in
+                        if error != nil{
+                            print(error!.localizedDescription)
+                        }else if request!.status == 1{
+                            self.isMainMenuPresented.toggle()
+                        }
+                    }
                 }
                 .foregroundColor(.white)
                 .padding(10)
@@ -54,14 +60,17 @@ struct ConnectionView: View {
                         .frame(width: width*0.15)
                 }.frame(width: width*0.35)
                 HStack{
-                    Image("twitter")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: width*0.15)
+                    Button(action: {
+//                        Api().register(completion: <#(messagesServer?, Error?) -> ()#>)
+                    }, label: {
+                        Image("twitter")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: width*0.15)
+                    })
+                    
                     Spacer()
-                    Image("instagram")
-                        .resizable()
-                        .scaledToFit()
+                    InstaUIView()
                         .frame(width: width*0.15)
                 }
                 .frame(width: width*0.35)

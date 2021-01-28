@@ -27,7 +27,7 @@ struct MenuView: View {
             Divider()
             HStack{
                 Image(systemName: "person")
-                Text("Mon profile")
+                Text("Mon profil")
             }.padding()
             Divider()
             HStack{

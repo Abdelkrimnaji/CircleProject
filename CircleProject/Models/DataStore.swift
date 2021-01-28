@@ -40,10 +40,27 @@ struct CategorySelection: Codable {
     var category_id: String
     var category_name: String
     var image_name: String
+    var isSelectedCategory: String
 }
 
 struct ChecklistItem: Identifiable {
   let id = UUID()
   var name: String
   var isChecked: Bool = false
+}
+
+struct jsonResponse: Decodable {
+    var status: Int
+    var status_message: String
+}
+
+struct messagesServer: Decodable{
+    var status: Int
+    var status_message: String
+}
+
+struct sellCategory: Identifiable {
+    var id = UUID()
+    var name: String
+    var subCategories:[String]
 }

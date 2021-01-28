@@ -8,20 +8,21 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @State private var pseudo: String = ""
-    var with = UIScreen.main.bounds.width
-    @State private var registerStep = 33.33
+    @State private var pseudo = ""
+    @State private var email = ""
+    private var width = UIScreen.main.bounds.width
+    @State private var registerStep = 33.3
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var isCategorySelectionPresented = false
-    @State var isChecked:Bool = false
-    @State var checklistItems = [
+    @State private var isChecked = false
+    @State private var checklistItems = [
         ChecklistItem(name: "Homme"),
         ChecklistItem(name: "Femme"),
         ChecklistItem(name: "Autre")
     ]
     var body: some View {
-        VStack {
-            if registerStep == 33.33{
+        VStack(spacing: 20) {
+            if registerStep == 33.3{
                 VStack(alignment: .leading) {
                     Text("Quel est votre pseudo ?")
                         .font(.title2)
@@ -30,8 +31,16 @@ struct RegisterView: View {
                             .font(.title2)
                             .padding(.leading, 5)
                     }.overlay(Rectangle().frame(width: 2, height: nil, alignment: .leading).foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576)), alignment: .leading)
+                    Text("Quel est votre email ?")
+                        .font(.title2)
+                        .padding(.top)
+                    HStack {
+                        TextField("Email", text: $email)
+                            .font(.title2)
+                            .padding(.leading, 5)
+                    }.overlay(Rectangle().frame(width: 2, height: nil, alignment: .leading).foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576)), alignment: .leading)
                 }.padding(.top)
-            }else if registerStep == 66.66{
+            }else if registerStep == 66.6{
                 VStack(alignment: .leading) {
                     Text("Quel est votre âge ?")
                         .font(.title2)
@@ -41,9 +50,9 @@ struct RegisterView: View {
                             .padding(.leading, 5)
                     }.overlay(Rectangle().frame(width: 2, height: nil, alignment: .leading).foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576)), alignment: .leading)
                     
-                    
                     Text("Vous vous définissez en tant que ?")
-                        .font(.title3)
+                        .font(.title2)
+                        .padding(.top)
 //                    Button(action: {isChecked.toggle()}){
 //                        HStack{ Image(systemName: isChecked ? "checkmark.square": "square")
 //                            Text("title")
@@ -53,10 +62,14 @@ struct RegisterView: View {
 //                    List {
                         ForEach(checklistItems) { checklistItem in
                             HStack {
-                                Image(systemName: checklistItem.isChecked ? "checkmark.square": "square")
+                                Image(systemName: checklistItem.isChecked ? "checkmark.circle": "circle")
+                                    .font(.title3)
+                                    .foregroundColor(Color(red: 131/255, green: 145/255, blue: 165/255))
 //                                Spacer()
                                 Text(checklistItem.name)
-                            }
+                                    .font(.title3)
+                                    .foregroundColor(.gray)
+                            }.padding(.top, 5)
                             .onTapGesture {
                                 if let matchingIndex =
                                   self.checklistItems.firstIndex(where: { $0.id == checklistItem.id }) {
@@ -122,13 +135,13 @@ struct RegisterView: View {
                 VStack {
                     HStack{
                         Spacer()
-                        Text("\(registerStep/33.33, specifier: "%.f") sur 3")
+                        Text("\(registerStep/33, specifier: "%.f") sur 3")
                     }
                     ProgressView("", value: registerStep, total: 100)
                 }.padding()
             }
             Button(action: {
-                self.registerStep+=33.33
+                self.registerStep += 33.3
                 if registerStep > 100{
                     self.isCategorySelectionPresented.toggle()
                 }
@@ -137,11 +150,10 @@ struct RegisterView: View {
                     .foregroundColor(.white)
             })
             .fullScreenCover(isPresented: $isCategorySelectionPresented, content: CategorySelectionView.init)
-            .frame(width: with*0.8)
+            .frame(width: width*0.8)
             .padding()
             .background(Color(red: 0.996, green: 0.557, blue: 0.576))
             .cornerRadius(20)
-            Spacer()
         }.padding()
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -151,7 +163,12 @@ struct RegisterView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Button(action: { self.presentationMode.wrappedValue.dismiss()}) {
+        .navigationBarItems(leading: Button(action: {
+            self.registerStep -= 33.3
+            if registerStep < 33{
+                self.presentationMode.wrappedValue.dismiss()
+            }
+        }) {
             Image(systemName: "arrow.left")
         })
     }
