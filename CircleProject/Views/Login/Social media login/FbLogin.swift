@@ -12,6 +12,7 @@ struct FbLogin: View {
     @AppStorage("logged") var logged = false
     @AppStorage("name") var name = ""
     @State var manager = LoginManager()
+    @State private var isMainMenuPresented = false
     var body: some View{
         VStack(spacing: 25){
             Button(action: {
@@ -32,6 +33,7 @@ struct FbLogin: View {
                             request.start {(_,res,_) in
                                 guard let profileData = res as? [String : Any] else{return}
                                 name = (profileData["name"] as? String)!
+                                self.isMainMenuPresented.toggle()
                             }
                         }
                     }
@@ -41,9 +43,8 @@ struct FbLogin: View {
                     .resizable()
                     .scaledToFit()
             })
-//            Text(name)
-//                .fontWeight(.bold)
         }
+        .fullScreenCover(isPresented: $isMainMenuPresented, content: TabUIView.init)
     }
 }
 

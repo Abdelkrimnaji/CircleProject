@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270A176F25A60973006AE36A /* CircleFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A176E25A60973006AE36A /* CircleFamilyView.swift */; };
+		270A177125A609ED006AE36A /* CircleFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A177025A609ED006AE36A /* CircleFriendsView.swift */; };
+		270A177325A60A1A006AE36A /* CircleProView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A177225A60A1A006AE36A /* CircleProView.swift */; };
 		271255BB257E32930075040C /* ApiCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271255BA257E32930075040C /* ApiCalls.swift */; };
-		27125603257E7D230075040C /* testObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27125602257E7D230075040C /* testObj.swift */; };
 		2718CFC82577A4DC008F8D3A /* GoogleLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2718CFC72577A4DC008F8D3A /* GoogleLogin.swift */; };
 		2718CFD52577AF54008F8D3A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2718CFD42577AF54008F8D3A /* GoogleService-Info.plist */; };
 		2718CFE42577C54D008F8D3A /* Pods_CircleProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F704F6F07DD0F03E6DE2404C /* Pods_CircleProject.framework */; };
@@ -25,11 +27,21 @@
 		2726CEF925587E52003564C4 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2726CEF825587E52003564C4 /* DataStore.swift */; };
 		2726CEFD25588005003564C4 /* CardItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2726CEFC25588005003564C4 /* CardItemView.swift */; };
 		2747E93325653EC800FD1537 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2747E93225653EC800FD1537 /* MenuView.swift */; };
+		2762A5DB25C0510F00A5C095 /* SellStep2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2762A5DA25C0510F00A5C095 /* SellStep2.swift */; };
+		2762A5DD25C0660A00A5C095 /* SellStep1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2762A5DC25C0660A00A5C095 /* SellStep1.swift */; };
+		2762A5E725C2C4E300A5C095 /* SellCatogories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2762A5E625C2C4E300A5C095 /* SellCatogories.swift */; };
+		2762A5E925C2CD9100A5C095 /* SellSubCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2762A5E825C2CD9100A5C095 /* SellSubCategory.swift */; };
 		276BE7AE2559B1400000889A /* FirstScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BE7AD2559B1400000889A /* FirstScreenView.swift */; };
 		276BE7B12559B87F0000889A /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276BE7B02559B87F0000889A /* RegisterView.swift */; };
 		278289642575561000762B25 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 278289632575561000762B25 /* FacebookLogin */; };
 		278289662575568200762B25 /* FbLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278289652575568200762B25 /* FbLogin.swift */; };
+		278FCF2325A3626900604006 /* TutoCircles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278FCF2225A3626900604006 /* TutoCircles.swift */; };
 		279F5862256681D8000577DA /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F5861256681D8000577DA /* CategorySelectionView.swift */; };
+		27B32AE22591129100DE368B /* InstagramApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B32ADF2591129100DE368B /* InstagramApi.swift */; };
+		27B32AE32591129100DE368B /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B32AE02591129100DE368B /* WebView.swift */; };
+		27B32AE42591129100DE368B /* InstagramTestUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B32AE12591129100DE368B /* InstagramTestUser.swift */; };
+		27B32AE6259112B500DE368B /* InstaUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B32AE5259112B500DE368B /* InstaUIView.swift */; };
+		27B32AED259231C900DE368B /* CircleViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B32AEC259231C900DE368B /* CircleViewConfig.swift */; };
 		27B82BF825602CBA001F0760 /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B82BF725602CBA001F0760 /* ConnectionView.swift */; };
 		27B82BFB25603C20001F0760 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B82BFA25603C20001F0760 /* TabView.swift */; };
 		27F6E77D256690C500B3B862 /* CategoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F6E77C256690C500B3B862 /* CategoryItemView.swift */; };
@@ -50,8 +62,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		270A176E25A60973006AE36A /* CircleFamilyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFamilyView.swift; sourceTree = "<group>"; };
+		270A177025A609ED006AE36A /* CircleFriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFriendsView.swift; sourceTree = "<group>"; };
+		270A177225A60A1A006AE36A /* CircleProView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProView.swift; sourceTree = "<group>"; };
 		271255BA257E32930075040C /* ApiCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCalls.swift; sourceTree = "<group>"; };
-		27125602257E7D230075040C /* testObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testObj.swift; sourceTree = "<group>"; };
 		2718CFC72577A4DC008F8D3A /* GoogleLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLogin.swift; sourceTree = "<group>"; };
 		2718CFD42577AF54008F8D3A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2726CED1255874CA003564C4 /* CircleProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CircleProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,10 +82,20 @@
 		2726CEF825587E52003564C4 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		2726CEFC25588005003564C4 /* CardItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItemView.swift; sourceTree = "<group>"; };
 		2747E93225653EC800FD1537 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		2762A5DA25C0510F00A5C095 /* SellStep2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellStep2.swift; sourceTree = "<group>"; };
+		2762A5DC25C0660A00A5C095 /* SellStep1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellStep1.swift; sourceTree = "<group>"; };
+		2762A5E625C2C4E300A5C095 /* SellCatogories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellCatogories.swift; sourceTree = "<group>"; };
+		2762A5E825C2CD9100A5C095 /* SellSubCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellSubCategory.swift; sourceTree = "<group>"; };
 		276BE7AD2559B1400000889A /* FirstScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstScreenView.swift; sourceTree = "<group>"; };
 		276BE7B02559B87F0000889A /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		278289652575568200762B25 /* FbLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FbLogin.swift; sourceTree = "<group>"; };
+		278FCF2225A3626900604006 /* TutoCircles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutoCircles.swift; sourceTree = "<group>"; };
 		279F5861256681D8000577DA /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
+		27B32ADF2591129100DE368B /* InstagramApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramApi.swift; sourceTree = "<group>"; };
+		27B32AE02591129100DE368B /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		27B32AE12591129100DE368B /* InstagramTestUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramTestUser.swift; sourceTree = "<group>"; };
+		27B32AE5259112B500DE368B /* InstaUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstaUIView.swift; sourceTree = "<group>"; };
+		27B32AEC259231C900DE368B /* CircleViewConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleViewConfig.swift; sourceTree = "<group>"; };
 		27B82BF725602CBA001F0760 /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
 		27B82BFA25603C20001F0760 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		27F6E77C256690C500B3B862 /* CategoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemView.swift; sourceTree = "<group>"; };
@@ -96,6 +120,7 @@
 		2718CFC62577A4B9008F8D3A /* Social media login */ = {
 			isa = PBXGroup;
 			children = (
+				27B32ADE2591125400DE368B /* Instagram */,
 				278289652575568200762B25 /* FbLogin.swift */,
 				2718CFC72577A4DC008F8D3A /* GoogleLogin.swift */,
 			);
@@ -132,7 +157,6 @@
 				2726CED8255874CE003564C4 /* Assets.xcassets */,
 				2726CEDD255874CE003564C4 /* Info.plist */,
 				2726CEDA255874CE003564C4 /* Preview Content */,
-				27125602257E7D230075040C /* testObj.swift */,
 			);
 			path = CircleProject;
 			sourceTree = "<group>";
@@ -143,6 +167,32 @@
 				2726CEDB255874CE003564C4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		27B32ADE2591125400DE368B /* Instagram */ = {
+			isa = PBXGroup;
+			children = (
+				27B32ADF2591129100DE368B /* InstagramApi.swift */,
+				27B32AE12591129100DE368B /* InstagramTestUser.swift */,
+				27B32AE02591129100DE368B /* WebView.swift */,
+				27B32AE5259112B500DE368B /* InstaUIView.swift */,
+			);
+			path = Instagram;
+			sourceTree = "<group>";
+		};
+		27CE1EB1258E199600F63BF7 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				276BE7B02559B87F0000889A /* RegisterView.swift */,
+				279F5861256681D8000577DA /* CategorySelectionView.swift */,
+				27F6E77C256690C500B3B862 /* CategoryItemView.swift */,
+				27B32AEC259231C900DE368B /* CircleViewConfig.swift */,
+				278FCF2225A3626900604006 /* TutoCircles.swift */,
+				270A176E25A60973006AE36A /* CircleFamilyView.swift */,
+				270A177025A609ED006AE36A /* CircleFriendsView.swift */,
+				270A177225A60A1A006AE36A /* CircleProView.swift */,
+			);
+			path = Intro;
 			sourceTree = "<group>";
 		};
 		27D9C997256BC7870046BA78 /* Shared */ = {
@@ -166,6 +216,7 @@
 		27F6E7A2256AB03300B3B862 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				27CE1EB1258E199600F63BF7 /* Intro */,
 				27F6E7A9256AB35800B3B862 /* Login */,
 				27F6E7A4256AB0B800B3B862 /* Home */,
 				27F6E7A7256AB0E700B3B862 /* Search */,
@@ -220,7 +271,11 @@
 		27F6E7A8256AB0F300B3B862 /* Sell */ = {
 			isa = PBXGroup;
 			children = (
+				2762A5E625C2C4E300A5C095 /* SellCatogories.swift */,
+				2762A5E825C2CD9100A5C095 /* SellSubCategory.swift */,
 				2726CEEB255875B4003564C4 /* SellView.swift */,
+				2762A5DC25C0660A00A5C095 /* SellStep1.swift */,
+				2762A5DA25C0510F00A5C095 /* SellStep2.swift */,
 			);
 			path = Sell;
 			sourceTree = "<group>";
@@ -230,10 +285,7 @@
 			children = (
 				2718CFC62577A4B9008F8D3A /* Social media login */,
 				276BE7AD2559B1400000889A /* FirstScreenView.swift */,
-				276BE7B02559B87F0000889A /* RegisterView.swift */,
 				27B82BF725602CBA001F0760 /* ConnectionView.swift */,
-				279F5861256681D8000577DA /* CategorySelectionView.swift */,
-				27F6E77C256690C500B3B862 /* CategoryItemView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -394,26 +446,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				270A177325A60A1A006AE36A /* CircleProView.swift in Sources */,
 				276BE7B12559B87F0000889A /* RegisterView.swift in Sources */,
 				2726CEE82558755D003564C4 /* SearchView.swift in Sources */,
+				2762A5DD25C0660A00A5C095 /* SellStep1.swift in Sources */,
 				27B82BFB25603C20001F0760 /* TabView.swift in Sources */,
+				270A176F25A60973006AE36A /* CircleFamilyView.swift in Sources */,
 				2726CEF925587E52003564C4 /* DataStore.swift in Sources */,
+				27B32AE6259112B500DE368B /* InstaUIView.swift in Sources */,
+				2762A5E925C2CD9100A5C095 /* SellSubCategory.swift in Sources */,
 				2726CEE525587543003564C4 /* HomeView.swift in Sources */,
 				276BE7AE2559B1400000889A /* FirstScreenView.swift in Sources */,
+				2762A5E725C2C4E300A5C095 /* SellCatogories.swift in Sources */,
 				2726CEF025587628003564C4 /* MessagesView.swift in Sources */,
 				2747E93325653EC800FD1537 /* MenuView.swift in Sources */,
 				2718CFC82577A4DC008F8D3A /* GoogleLogin.swift in Sources */,
 				279F5862256681D8000577DA /* CategorySelectionView.swift in Sources */,
+				27B32AED259231C900DE368B /* CircleViewConfig.swift in Sources */,
+				270A177125A609ED006AE36A /* CircleFriendsView.swift in Sources */,
+				2762A5DB25C0510F00A5C095 /* SellStep2.swift in Sources */,
+				27B32AE22591129100DE368B /* InstagramApi.swift in Sources */,
 				27F6E77D256690C500B3B862 /* CategoryItemView.swift in Sources */,
 				2726CED7255874CA003564C4 /* ContentView.swift in Sources */,
+				27B32AE42591129100DE368B /* InstagramTestUser.swift in Sources */,
 				2726CEFD25588005003564C4 /* CardItemView.swift in Sources */,
 				2726CEEC255875B4003564C4 /* SellView.swift in Sources */,
 				278289662575568200762B25 /* FbLogin.swift in Sources */,
-				27125603257E7D230075040C /* testObj.swift in Sources */,
 				2726CEF32558766B003564C4 /* CircleView.swift in Sources */,
 				271255BB257E32930075040C /* ApiCalls.swift in Sources */,
 				27B82BF825602CBA001F0760 /* ConnectionView.swift in Sources */,
 				2726CED5255874CA003564C4 /* CircleProjectApp.swift in Sources */,
+				278FCF2325A3626900604006 /* TutoCircles.swift in Sources */,
+				27B32AE32591129100DE368B /* WebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

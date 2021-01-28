@@ -26,6 +26,7 @@ struct HomeView: View {
     @State var showMenu:Bool = false
     var height = UIScreen.main.bounds.height
     var width = UIScreen.main.bounds.width
+    @State private var isCardErrorMessage = false
     var body: some View {
         NavigationView {
             ScrollView{
@@ -62,12 +63,21 @@ struct HomeView: View {
                                     })
                                     .padding(.leading)
                                     .onAppear{
-                                        Api().getObjects { (object) in
-                                            self.objects = object
+                                        Api().getObjects { (object,error)  in
+                                            if error != nil{
+                                                self.isCardErrorMessage.toggle()
+                                                
+                                                print(error!.localizedDescription)
+                                            }else if let object = object{
+                                                self.objects = object
+                                            }
                                         }
                                     }
                                 }
                                 .frame(height:height*0.4)
+                                .alert(isPresented: $isCardErrorMessage, content: {
+                                    Alert(title: Text("Erreur"), message: Text("Pas d'annonces disponible"), dismissButton: Alert.Button.default(Text("Ok"), action: nil))
+                                })
                             }
                             Divider()
                             Button(action: {self.showAllDesireItems.toggle()}, label: {
