@@ -15,6 +15,7 @@ struct ConnectionView: View {
     @State private var isMainMenuPresented = false
     var body: some View {
         VStack {
+            Spacer()
             HStack {
                 Image("logoCircle")
                     .resizable()
