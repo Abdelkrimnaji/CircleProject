@@ -59,8 +59,44 @@ struct messagesServer: Decodable{
     var status_message: String
 }
 
-struct sellCategory: Identifiable {
+struct SellCategory: Identifiable {
     var id = UUID()
     var name: String
-    var subCategories:[String]
+    var children:[SellCategory] = []
+    static var categoriesList: [SellCategory] = [
+        SellCategory(name: "Mode",children:[SellCategory(name: "Vetements"),SellCategory(name: "Chaussure"),SellCategory(name: "Accessoires & Bagagerie"),SellCategory(name: "Montres & Bijoux"),SellCategory(name: "Equipement bébé"),SellCategory(name: "Vêtements bébé"),SellCategory(name: "Luxe & Tendances")]),
+        SellCategory(name: "Véhicules",children:[SellCategory(name: "Voitures"),SellCategory(name: "Motos"),SellCategory(name: "Caravaning"),SellCategory(name: "Utilitaires"),SellCategory(name: "Camions"),SellCategory(name: "Nautisme"),SellCategory(name: "Equipement auto"),SellCategory(name: "Equipement moto"),SellCategory(name: "Equipement caravaning"),SellCategory(name: "Equipement nautisme")]),
+        SellCategory(name: "Multimédia",children:[SellCategory(name: "Informatique"),SellCategory(name: "Consoles & Jeux vidéo"),SellCategory(name: "Image & Son"),SellCategory(name: "Téléphonie")]),
+        SellCategory(name: "Immobilier",children:[SellCategory(name: "Vetements")]),
+        SellCategory(name: "Loisirs",children:[SellCategory(name: "Vetements")]),
+        SellCategory(name: "Maison",children:[SellCategory(name: "Vetements")]),
+        SellCategory(name: "Animaux",children:[SellCategory(name: "Vetements")]),
+        SellCategory(name: "Immobilier",children:[SellCategory(name: "Vetements")])
+    ]
+}
+
+class Deal: ObservableObject {
+
+    var type: DealType = .offre
+    var category: SellCategory?
+    @Published var title: String = ""
+    @Published var price: String = ""
+    var city: String = ""
+    var description: String = ""
+    var images: [UIImage] = []
+//    var circles: [
+    var creator: DealCreator = DealCreator()
+    
+}
+
+enum DealType {
+    case offre, demande
+}
+
+struct DealCreator {
+    var email: String?
+    var phoneNumber: String?
+    static var stub: DealCreator{
+        DealCreator(email: "mail", phoneNumber: "06")
+    }
 }

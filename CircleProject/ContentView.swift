@@ -12,9 +12,10 @@ struct ContentView: View {
     
     var body: some View {
 //        if isLogged{
-//            TabUIView()
+            TabUIView()
+////            MapView()
 //        }else{
-            FirstScreenView()
+//            FirstScreenView()
 //        }
     }
 }
