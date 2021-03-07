@@ -13,6 +13,8 @@ struct FbLogin: View {
     @AppStorage("name") var name = ""
     @State var manager = LoginManager()
     @State private var isMainMenuPresented = false
+    @StateObject var viewRouter = ViewRouter()
+    
     var body: some View{
         VStack(spacing: 25){
             Button(action: {
@@ -43,8 +45,9 @@ struct FbLogin: View {
                     .resizable()
                     .scaledToFit()
             })
+        }.fullScreenCover(isPresented: $isMainMenuPresented){
+            TabUIView(viewRouter: viewRouter)
         }
-        .fullScreenCover(isPresented: $isMainMenuPresented, content: TabUIView.init)
     }
 }
 

@@ -9,19 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     var isLogged = UserDefaults.standard.bool(forKey: "logged")
+    @StateObject var viewRouter = ViewRouter()
     
     var body: some View {
 //        if isLogged{
-            TabUIView()
-////            MapView()
+//        TabUIView(viewRouter: viewRouter)
 //        }else{
 //            FirstScreenView()
-//        }
+TutoCircles()
+        //        }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView(arrayImage: [UIImage(named: "placeholder")])
+//    }
+//}

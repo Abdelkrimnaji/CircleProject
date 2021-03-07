@@ -64,7 +64,7 @@ struct CircleViewConfig: View {
             .frame(width: width*0.8)
             .padding()
             .background(Color(red: 0.996, green: 0.557, blue: 0.576))
-            .cornerRadius(20)
+            .cornerRadius(12)
             Spacer()
         }.padding()
         .navigationBarBackButtonHidden(true)

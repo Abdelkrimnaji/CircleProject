@@ -9,23 +9,25 @@ import SwiftUI
 
 struct CategorySelectionView: View {
     @State var categoryList: [CategorySelection] = []
-    var width = UIScreen.main.bounds.width
-    private var tutorielStep = 2
+    @State var width = UIScreen.main.bounds.width
+    @State private var tutorielStep = 2
     @State private var isTutoCirclesPresented = false
+    @ObservedObject var user: User
+    
     var body: some View {
         NavigationView {
             ZStack{
                 VStack{
-                    VStack(alignment: .leading){
-                        Text("Sélectionnez 4 catégories ou plus")
-                            .padding()
+                    Text("Sélectionnez 4 catégories ou plus")
+                        .padding()
+                    ScrollView{
                         LazyVGrid(columns: [GridItem(),GridItem()], content: /*@START_MENU_TOKEN@*/{
                             ForEach(categoryList, id: \.category_id){ categories in
-                                CategoryItemView(categoryItem: categories)
+                                CategoryItemView(categoryItem: categories, user: user)
                             }
                         }).padding(.bottom)
                         Spacer()
-                    }.onAppear{
+                    .onAppear{
                         Api().getCategories { (categories,error)  in
                             if error != nil{
                                 print(error!.localizedDescription)
@@ -35,18 +37,19 @@ struct CategorySelectionView: View {
                         }
                     }
                     Spacer()
-                    Button(action: {
-                        self.isTutoCirclesPresented.toggle()
-                    }, label: {
-                        Text("Suivant")
-                            .foregroundColor(.white)
-                    })
-                    .fullScreenCover(isPresented: $isTutoCirclesPresented, content: TutoCircles.init)
-                    .frame(width: width*0.8)
-                    .padding()
-                    .background(Color(red: 0.996, green: 0.557, blue: 0.576))
-                    .cornerRadius(20)
+                        Button(action: {
+                            self.isTutoCirclesPresented.toggle()
+                        }, label: {
+                            Text("Suivant")
+                                .foregroundColor(.white)
+                        })
+                        .fullScreenCover(isPresented: $isTutoCirclesPresented, content: TutoCircles.init)
+                        .frame(width: width*0.8)
+                        .padding()
+                        .background(Color(red: 0.996, green: 0.557, blue: 0.576))
+                        .cornerRadius(12)
                 }.padding()
+                }
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -63,6 +66,6 @@ struct CategorySelectionView: View {
 
 struct CategorySelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        CategorySelectionView()
+        CategorySelectionView(user: User())
     }
 }

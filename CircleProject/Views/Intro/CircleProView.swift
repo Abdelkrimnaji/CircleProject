@@ -67,11 +67,13 @@ struct CircleProView: View {
                     .foregroundColor(.white)
                     .font(.title2)
             })
-            .fullScreenCover(isPresented: $isMainMenuPresented, content: TabUIView.init)
+            .fullScreenCover(isPresented: $isMainMenuPresented){
+                TabUIView(viewRouter: ViewRouter())
+            }
             .frame(width: width*0.8)
             .padding()
             .background(Color(red: 0.996, green: 0.557, blue: 0.576))
-            .cornerRadius(20)
+            .cornerRadius(12)
         }.padding()
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)

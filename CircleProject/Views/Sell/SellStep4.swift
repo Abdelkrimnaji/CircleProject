@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct SellStep4: View {
-    @State private var profileMail = ""
-    @State private var phoneNumber = ""
-    @State private var maskPhoneNumber = false
+    @State var maskPhoneNumber = false
+    @ObservedObject var dealOffer: Deal
+    
     var body: some View {
         VStack {
             HStack {
@@ -30,15 +30,16 @@ struct SellStep4: View {
             Divider()
                 .padding(.vertical)
             HStack {
-                TextField("Email du profil *", text: $profileMail)
+                TextField("Email du profil *", text: $dealOffer.creator.email)
+                    .keyboardType(.emailAddress)
                     .font(.title2)
                     .padding(.leading, 5)
             }.overlay(Rectangle().frame(width: 2, height: nil, alignment: .leading).foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576)), alignment: .leading)
             Divider()
                 .padding(.vertical)
             HStack {
-                TextField("Numéro de téléphone *", text: $phoneNumber)
-                    .keyboardType(.numberPad)
+                TextField("Numéro de téléphone *", text: $dealOffer.creator.phoneNumber)
+                    .keyboardType(.phonePad)
                     .font(.title2)
                     .padding(.leading, 5)
             }.overlay(Rectangle().frame(width: 2, height: nil, alignment: .leading).foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576)), alignment: .leading)
@@ -51,6 +52,13 @@ struct SellStep4: View {
             }.padding(.horizontal)
             .padding(.top)
             .toggleStyle(SwitchToggleStyle(tint: Color(red: 253/255, green: 143/255, blue: 147/255)))
+            .onChange(of: maskPhoneNumber, perform: { value in
+                if value{
+                    dealOffer.maskPhoneNumber = "true"
+                }else{
+                    dealOffer.maskPhoneNumber = "false"
+                }
+            })
             Spacer()
             HStack {
                 Text("* Champs obligatoires")
@@ -58,12 +66,14 @@ struct SellStep4: View {
                     .opacity(0.5)
                 Spacer()
             }
+        }.onTapGesture {
+            UIApplication.shared.endEditing()
         }
     }
 }
 
 struct SellStep4_Previews: PreviewProvider {
     static var previews: some View {
-        SellStep4()
+        SellStep4(dealOffer: Deal())
     }
 }

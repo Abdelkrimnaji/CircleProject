@@ -13,12 +13,12 @@ struct SellStep2: View {
     @State var sourceType: UIImagePickerController.SourceType = .camera
     @State var image: UIImage?
     @State var arrayImage: [UIImage?]
+    @State private var width = UIScreen.main.bounds.width
+    @State private var height = UIScreen.main.bounds.height
     
-    @State var annonceDescription = ""
-    var width = UIScreen.main.bounds.width
-    var height = UIScreen.main.bounds.height
+    @ObservedObject var dealOffer: Deal
     
-    fileprivate func GetPhoto() -> some View {
+    fileprivate func AddPhoto() -> some View {
         return Button(action: {
             self.showSheet = true
         }, label: {
@@ -62,49 +62,49 @@ struct SellStep2: View {
                         Spacer()
                     }
                     Spacer()
-                    if arrayImage.count == 1{
-                        GetPhoto()
-                    }else if arrayImage.count == 2{
+                    if arrayImage.count == 0{
+                        AddPhoto()
+                    }else if arrayImage.count == 1{
                         HStack{
-                            Image(uiImage: arrayImage[1]!)
+                            Image(uiImage: arrayImage[0]!)
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: width*0.35,height: height*0.12)
                                 .cornerRadius(10)
-                            GetPhoto()
+                            AddPhoto()
                         }
-                    }else if arrayImage.count == 3{
+                    }else if arrayImage.count == 2{
                         VStack{
                             HStack{
-                                Image(uiImage: arrayImage[1]!)
+                                Image(uiImage: arrayImage[0]!)
                                     .resizable()
                                     .scaledToFill()
                                     .frame(width: width*0.35,height: height*0.12)
                                     .cornerRadius(10)
-                                Image(uiImage: arrayImage[2]!)
+                                Image(uiImage: arrayImage[1]!)
                                     .resizable()
                                     .scaledToFill()
                                     .frame(width: width*0.35,height: height*0.12)
                                     .cornerRadius(10)
                             }
-                            GetPhoto()
+                            AddPhoto()
                         }
-                    }else if arrayImage.count == 4{
+                    }else if arrayImage.count == 3{
                         VStack(alignment: .leading){
                             HStack{
-                                Image(uiImage: arrayImage[1]!)
+                                Image(uiImage: arrayImage[0]!)
                                     .resizable()
                                     .scaledToFill()
                                     .frame(width: width*0.35,height: height*0.12)
                                     .cornerRadius(10)
-                                Image(uiImage: arrayImage[2]!)
+                                Image(uiImage: arrayImage[1]!)
                                     .resizable()
                                     .scaledToFill()
                                     .frame(width: width*0.35,height: height*0.12)
                                     .cornerRadius(10)
                             }
                             HStack {
-                                Image(uiImage: arrayImage[3]!)
+                                Image(uiImage: arrayImage[2]!)
                                     .resizable()
                                     .scaledToFill()
                                     .frame(width: width*0.35,height: height*0.12)
@@ -117,7 +117,7 @@ struct SellStep2: View {
                 Divider()
                     .padding(.vertical)
                 HStack {
-                    TextField("Description de l'annonce", text: $annonceDescription)
+                    TextField("Description de l'annonce", text: $dealOffer.dealDescription)
                         .font(.title2)
                         .padding(.leading, 5)
                 }.overlay(Rectangle().frame(width: 2, height: nil, alignment: .leading).foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576)), alignment: .leading)
@@ -126,17 +126,34 @@ struct SellStep2: View {
                 ImagePicker(image: self.$image, isShown: self.$showImagePicker, arrayImage: self.$arrayImage, sourceType: self.sourceType)
                     .edgesIgnoringSafeArea(.all)
             }
-        }
+        }.onChange(of: arrayImage, perform: { value in
+            if value.count == 3{
+                var images = [String]()
+                for i in 0...(value.count-1){
+                    let uiImage: UIImage = self.arrayImage[i]!
+                    let imageData: Data = uiImage.jpegData(compressionQuality: 0.1) ?? Data()
+                    let imageStr: String = imageData.base64EncodedString()
+                    
+                    images.append(imageStr)
+                }
+                Api().uploadImages(image: images){(images, error) in
+                    if error != nil{
+                        print(error!.localizedDescription)
+                    }else{
+                        dealOffer.images.append(contentsOf: images!.images)
+                    }
+                }
+            }
+        })
     }
 }
 
 struct SellStep2_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            SellStep2(arrayImage: [UIImage(named: "placeholder")!])
+            SellStep2(arrayImage: [], dealOffer: Deal())
                 .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
                 .previewDisplayName("iPhone 11")
-//            SellStep2(arrayImage: [UIImage(named: "placeholder")!])
         }
     }
 }

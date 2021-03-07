@@ -8,15 +8,26 @@
 import SwiftUI
 
 struct SellCategoriesView: View {
-    @Binding var category: SellCategory
+    @State var categoriesList: [CategorySelection] = []
+    @Binding var rootIsActive : Bool
+    @ObservedObject var dealOffer: Deal
     
     var body: some View {
-        List(SellCategory.categoriesList) { category in
+        List(categoriesList, id: \.category_id) { category in
             NavigationLink(
-                destination: SellSubCategoryView(category: $category, categorySelected: category),
+                destination: SellSubCategoryView(categoryId: category.category_id, categoryName:category.category_name, dealOffer: dealOffer, shouldPopToRootView: self.$rootIsActive),
                 label: {
-                    Text(category.name)
+                    Text(category.category_name)
+                        .foregroundColor(.primary)
                 })
+        }.onAppear{
+            Api().getCategories { (categories,error)  in
+                if error != nil{
+                    print(error!.localizedDescription)
+                }else if let categories = categories{
+                    self.categoriesList = categories
+                }
+            }
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -32,6 +43,6 @@ struct SellCategoriesView: View {
 
 struct SellCatogories_Previews: PreviewProvider {
     static var previews: some View {
-        SellCategoriesView(category: .constant(SellCategory(name: "Vetements")))
+        SellCategoriesView(rootIsActive: .constant(false), dealOffer: Deal())
     }
 }

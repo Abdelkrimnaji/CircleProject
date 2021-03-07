@@ -11,6 +11,7 @@ struct CardItemView: View {
     var card: CardItem
     var width = UIScreen.main.bounds.width
     var height = UIScreen.main.bounds.height
+    
     var body: some View {
         VStack{
             Spacer()
@@ -19,26 +20,30 @@ struct CardItemView: View {
                     .foregroundColor(.gray)
                     .font(.title)
                 Text(card.profileName)
+                    .foregroundColor(.primary)
                 Spacer()
             }
             Spacer()
             VStack {
                 Spacer()
-                Image(card.cardImage)
-                    .resizable()
-                    .scaledToFit()
+                let mainImage = self.card.cardImage.components(separatedBy: ",")
+                Image("placeholder")
+                    .data(url: URL(string: mainImage[0])!)
+                        .resizable()
+                        .scaledToFit()
+                    .cornerRadius(5)
                 Spacer()
                     VStack(alignment: .leading){
                         HStack {
                             Text(card.title)
                                 .font(.subheadline)
+                                .foregroundColor(.primary)
                                 .fontWeight(.bold)
                             Spacer()
                         }
                         Text(card.category)
                             .foregroundColor(.gray)
                             .font(.subheadline)
-//                        Text("\(Int(card.price)!, specifier: "%.2f")€")
                         Text("\(card.price)€")
                             .foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576))
                     }
@@ -53,7 +58,18 @@ struct CardItemView: View {
 
 struct CardItemView_Previews: PreviewProvider {
     static var previews: some View {
-        CardItemView(card: CardItem(profileImage: "person.crop.circle.fill", card_id: "1", profileName: "So701", cardImage: "clio", title: "Clio IV GT 2019", category: "Voiture", price: "15000", description: ""))
+        CardItemView(card: CardItem(profileImage: "person.crop.circle.fill", card_id: "1", profileName: "So701", cardImage: "file:///Users/abdelkrimnaji/Public/iOS/CircleProject/CircleProject/Assets.xcassets/annonce%20media/clio.imageset/clio.jpg", title: "Clio IV GT 2019", category: "Voiture", price: "15000", description: ""))
 //        CardItemView(card: CardItem(profileImageName: "person.crop.circle.fill", profileName: "Abdoul701", imageName: "real", title: "Mallot \"Authentique\" Real", category: "Mode", price: 60))
+    }
+}
+
+extension Image {
+    func data(url:URL) -> Self {
+        if let data = try? Data(contentsOf: url) {
+            return Image(uiImage: UIImage(data: data)!)
+                    .resizable()
+        }
+        return self
+            .resizable()
     }
 }

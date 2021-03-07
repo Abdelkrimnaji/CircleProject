@@ -13,36 +13,47 @@ struct CircleFamilyView: View {
     var width = UIScreen.main.bounds.width
     @State var isTutoCirclesPresented = false
     @Binding var tutoStep: Int
+    
+    @State var usersList: [Users] = []
+    
     var body: some View {
         VStack {
             VStack{
                 HStack {
                     Text("Configuration du")
-                        .font(.title)
+                        .font(.title2)
                     Spacer()
                 }
                 HStack {
-                    Text("Cercle Familial \(tutoStep)")
+                    Text("Cercle Familial")
                         .fontWeight(.bold)
-                        .font(.largeTitle)
+                        .font(.title)
                         .foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576))
                     Spacer()
                 }.padding(.top, 5)
                 Image("logoCircle")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 150)
+                    .frame(width: 100)
             }.padding(.top)
             VStack {
                 VStack(alignment: .leading) {
-                    Text("Cherchez parmis nos membres")
-                        .font(.title)
-                        .foregroundColor(Color(red: 90/255, green: 105/255, blue: 120/255))
-                    HStack {
-                        TextField("Pseudo", text: $pseudo)
+                        Text("Cherchez parmis nos membres")
                             .font(.title)
-                            .padding(.leading, 10)
-                    }.overlay(Rectangle().frame(width: 2, height: nil, alignment: .leading).foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576)), alignment: .leading)
+                            .foregroundColor(Color(red: 90/255, green: 105/255, blue: 120/255))
+                        HStack {
+                            TextField("Pseudo", text: $pseudo)
+                                .font(.title)
+                                .padding(.leading, 10)
+                        }.overlay(Rectangle().frame(width: 2, height: nil, alignment: .leading).foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576)), alignment: .leading)
+                    
+                    ForEach(usersList, id: \.user_id){ user in
+                        Text(user.username)
+                            .onTapGesture{
+                                self.pseudo = user.username
+                                self.usersList.removeAll()
+                            }
+                    }
                 }.padding(.top, 50)
                 Text("ou")
                     .font(.title2)
@@ -57,23 +68,23 @@ struct CircleFamilyView: View {
                             .padding(.leading, 10)
                     }.overlay(Rectangle().frame(width: 2, height: nil, alignment: .leading).foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576)), alignment: .leading)
                 }.padding(.top)
-                Button(action: {
-                    Api().sendMail(email:email) { (response,error)  in
-                        if error != nil{
-                            print(error!.localizedDescription)
-                        }else if let response = response{
-                            print(response.status_message)
-                        }
-                    }
-                }, label: {
-                    Text("Inviter")
-                        .foregroundColor(.white)
-                })
-                .frame(width: width*0.5)
-                .padding()
-                .background(Color(red: 0.996, green: 0.557, blue: 0.576))
-                .cornerRadius(20)
-                .padding()
+//                Button(action: {
+//                    Api().sendMail(email:email) { (response,error)  in
+//                        if error != nil{
+//                            print(error!.localizedDescription)
+//                        }else if let response = response{
+//                            print(response.status_message)
+//                        }
+//                    }
+//                }, label: {
+//                    Text("Inviter")
+//                        .foregroundColor(.white)
+//                })
+//                .frame(width: width*0.5)
+//                .padding()
+//                .background(Color(red: 0.996, green: 0.557, blue: 0.576))
+//                .cornerRadius(20)
+//                .padding()
             }
             Spacer()
             Button(action: {
@@ -86,8 +97,22 @@ struct CircleFamilyView: View {
             .frame(width: width*0.8)
             .padding()
             .background(Color(red: 0.996, green: 0.557, blue: 0.576))
-            .cornerRadius(20)
+            .cornerRadius(12)
         }.padding()
+        .onChange(of: self.pseudo, perform: { value in
+//            self.cleanList = false
+            Api().getUsers(username: self.pseudo,completion: { (users, error) in
+                if error != nil{
+                    print(error!.localizedDescription)
+                }else if let users = users{
+//                    if !cleanList{
+                        self.usersList = users
+//                    }else{
+//                        self.usersList = []
+//                    }
+                }
+            })
+        })
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

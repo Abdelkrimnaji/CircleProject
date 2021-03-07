@@ -142,8 +142,7 @@ struct TutoCircles: View {
                                 }.opacity(tutoStep == 0 ? 0 : 1)
                                 .offset(y: tutoStep == 2 ? 30 : 0)
                                 .offset(y: bounce ? -2 : 0)
-//                                .animation(Animation.interpolatingSpring(stiffness: 20, damping: 2).repeatForever(autoreverses: false))
-//                                .animation(Animation.easeOut(duration: 0.5).repeatForever(autoreverses: true))
+                                
                                 if tutoStep == 1{
                                     NavigationLink(
                                         destination: CircleFamilyView(tutoStep: self.$tutoStep),
@@ -191,11 +190,6 @@ struct TutoCircles: View {
                             withAnimation(.easeInOut(duration: 0.9), {
                                 self.tutoStep += 1
                             })
-//                            withAnimation(.easeInOut(duration: 200), {
-//                                sleep(1)
-//                                self.bounce.toggle()
-//                            })
-
                         }, label: {
                             Text("Suivant")
                                 .foregroundColor(.white)
@@ -203,7 +197,7 @@ struct TutoCircles: View {
                         .frame(width: width*0.8)
                         .padding()
                         .background(Color(red: 0.996, green: 0.557, blue: 0.576))
-                        .cornerRadius(20)
+                        .cornerRadius(12)
                         .overlay(Rectangle().fill(Color(red: 233/255, green: 233/255, blue: 233/255, opacity: tutoStep != 0 ? 0.8 : 0)))
                         Spacer()
                     }

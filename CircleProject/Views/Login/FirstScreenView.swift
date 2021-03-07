@@ -10,6 +10,9 @@ import SwiftUI
 struct FirstScreenView: View {
     var with = UIScreen.main.bounds.width
     var height = UIScreen.main.bounds.height
+    
+    @StateObject var userRegistration: User = User()
+    
     var body: some View {
         NavigationView{
             VStack {
@@ -26,7 +29,7 @@ struct FirstScreenView: View {
                         .foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576))
                 }.padding(.bottom)
                 VStack{
-                    NavigationLink(destination: RegisterView()) {
+                    NavigationLink(destination: RegisterView(user: userRegistration)) {
                         Text("Créer un compte")
                             .foregroundColor(.white)
                             .padding(10)
