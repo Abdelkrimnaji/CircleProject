@@ -14,7 +14,7 @@ struct CircleFamilyView: View {
     @State var isTutoCirclesPresented = false
     @Binding var tutoStep: Int
     
-    @State var usersList: [Users] = []
+    @State var usersList: [User] = []
     
     var body: some View {
         VStack {
@@ -47,10 +47,10 @@ struct CircleFamilyView: View {
                                 .padding(.leading, 10)
                         }.overlay(Rectangle().frame(width: 2, height: nil, alignment: .leading).foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576)), alignment: .leading)
                     
-                    ForEach(usersList, id: \.user_id){ user in
-                        Text(user.username)
+                    ForEach(usersList, id: \.id){ user in
+                        Text(user.name ?? "")
                             .onTapGesture{
-                                self.pseudo = user.username
+                                self.pseudo = user.name ?? ""
                                 self.usersList.removeAll()
                             }
                     }

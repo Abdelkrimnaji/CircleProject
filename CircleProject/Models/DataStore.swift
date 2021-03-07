@@ -119,7 +119,8 @@ struct Circles {
     var circleColor: [Color] = [Color(red: 253/255, green: 143/255, blue: 147/255),Color(red: 214/255, green: 101/255, blue: 105/255),Color(red: 235/255, green: 71/255, blue: 78/255),Color(red: 168/255, green: 42/255, blue: 48/255)]
 }
 
-class User: NSObject,ObservableObject {
+class User: ObservableObject, Decodable, Identifiable {
+    @Published var id: Int = 0
     @Published var name: String
     @Published var email: String
     @Published var password: String
@@ -127,7 +128,68 @@ class User: NSObject,ObservableObject {
     @Published var age: String
     @Published var gender: String
     @Published var location: String
-    @Published var categories: [String]
+    @Published var categories: [String] = []
+    
+    enum CodingKeys: String, CodingKey {
+        case name = "username"
+        case id = "user_id"
+        case userImage = "user_image"
+        case email,password,age,location,gender,categories
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+           
+        self.id = try values.decode(Int.self, forKey: .id)
+           if let value = try? values.decode(String.self, forKey: .name) {
+               self.name = value
+           } else {
+               self.name = ""
+           }
+           
+        if let value = try? values.decode(String.self, forKey: .email) {
+            self.email = value
+        } else {
+            self.email = ""
+        }
+        
+        if let value = try? values.decode(String.self, forKey: .password) {
+            self.password = value
+        } else {
+            self.password = ""
+        }
+        
+        if let value = try? values.decode(String.self, forKey: .userImage) {
+            self.userImage = value
+        } else {
+            self.userImage = ""
+        }
+        
+        if let value = try? values.decode(String.self, forKey: .age) {
+            self.age = value
+        } else {
+            self.age = ""
+        }
+        
+        if let value = try? values.decode(String.self, forKey: .gender) {
+            self.gender = value
+        } else {
+            self.gender = ""
+        }
+        
+        if let value = try? values.decode(String.self, forKey: .location) {
+            self.location = value
+        } else {
+            self.location = ""
+        }
+        
+        if let value = try? values.decode([String].self, forKey: .categories) {
+            self.categories = value
+        } else {
+            self.categories = []
+        }
+       }
+
     
     init(name: String = "", email: String = "",password:String = "",userImage:String = "",age:String = "",gender:String = "",location:String = "",categories:[String] = []) {
         self.name = name
@@ -141,10 +203,6 @@ class User: NSObject,ObservableObject {
     }
 }
 
-struct Users: Codable {
-    var user_id: String
-    var username: String
-}
 
 struct Location: Codable {
     var nom: String

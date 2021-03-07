@@ -334,7 +334,7 @@ struct Api {
         task.resume()
     }
     
-    func getUsers(username: String,completion: @escaping ([Users]?,Error?) -> ()) {
+    func getUsers(username: String,completion: @escaping ([User]?,Error?) -> ()) {
         let url = URL(string: "http://localhost/CircleApiV2/index.php/user/list")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -359,7 +359,7 @@ struct Api {
             }
             
             do{
-                let users = try JSONDecoder().decode([Users].self, from: data)
+                let users = try JSONDecoder().decode([User].self, from: data)
                 DispatchQueue.main.async {
                     completion(users,nil)
                 }
