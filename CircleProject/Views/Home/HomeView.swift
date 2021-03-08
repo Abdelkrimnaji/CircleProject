@@ -10,14 +10,14 @@ import SwiftUI
 struct HomeView: View {
     
     @State var objects: [CardItem] = []
-    var desireCardList: [CardItem] = [
-        CardItem(profileImage: "person.crop.circle.fill", card_id: "100", profileName: "Jo du 77", cardImage: "chemise", title: "Chemise", category: "Mode", price: "55", description: ""),
-        CardItem(profileImage: "person.crop.circle.fill", card_id: "101", profileName: "Bob", cardImage: "montre", title: "Fossil", category: "Mode", price: "150", description: ""),
-        CardItem(profileImage: "person.crop.circle.fill", card_id: "102", profileName: "Donald", cardImage: "2cv", title: "Citroen 2CV 1988", category: "Voiture", price: "150000", description: ""),
-        CardItem(profileImage: "person.crop.circle.fill", card_id: "103", profileName: "Abdoul701", cardImage: "real", title: "Mallot \"Authentique\" Real", category: "Mode", price: "60", description: ""),
-        CardItem(profileImage: "person.crop.circle.fill", card_id: "104", profileName: "Palermo70", cardImage: "rolex", title: "Rolex Date Just", category: "Mode", price: "10000", description: ""),
-        CardItem(profileImage: "person.crop.circle.fill", card_id: "105", profileName: "So701", cardImage: "clio", title: "Clio IV GT 2019", category: "Voiture", price: "15000", description: "")
-    ]
+//    var desireCardList: [CardItem] = [
+//        CardItem(profileImage: "person.crop.circle.fill", card_id: "100", profileName: "Jo du 77", cardImage: "chemise", title: "Chemise", category: "Mode", price: "55", description: ""),
+//        CardItem(profileImage: "person.crop.circle.fill", card_id: "101", profileName: "Bob", cardImage: "montre", title: "Fossil", category: "Mode", price: "150", description: ""),
+//        CardItem(profileImage: "person.crop.circle.fill", card_id: "102", profileName: "Donald", cardImage: "2cv", title: "Citroen 2CV 1988", category: "Voiture", price: "150000", description: ""),
+//        CardItem(profileImage: "person.crop.circle.fill", card_id: "103", profileName: "Abdoul701", cardImage: "real", title: "Mallot \"Authentique\" Real", category: "Mode", price: "60", description: ""),
+//        CardItem(profileImage: "person.crop.circle.fill", card_id: "104", profileName: "Palermo70", cardImage: "rolex", title: "Rolex Date Just", category: "Mode", price: "10000", description: ""),
+//        CardItem(profileImage: "person.crop.circle.fill", card_id: "105", profileName: "So701", cardImage: "clio", title: "Clio IV GT 2019", category: "Voiture", price: "15000", description: "")
+//    ]
     let colums = [
         GridItem(.adaptive(minimum: 150))
     ]
@@ -27,6 +27,7 @@ struct HomeView: View {
     var height = UIScreen.main.bounds.height
     var width = UIScreen.main.bounds.width
     @State private var isCardErrorMessage = false
+    
     var body: some View {
         NavigationView {
             ScrollView{
@@ -35,6 +36,7 @@ struct HomeView: View {
                         VStack(alignment: .leading){
                             Text("Fil d'actualités")
                                 .font(.title)
+                                .foregroundColor(.primary)
                                 .padding()
                             Divider()
                             Button(action: {
@@ -85,23 +87,23 @@ struct HomeView: View {
                                     .foregroundColor(.gray)
                             }).padding(.leading)
                             
-                            if showAllDesireItems {
-                                ScrollView{
-                                    LazyVGrid(columns: showAllDesireItems ? colums : [GridItem()], content: /*@START_MENU_TOKEN@*/{
-                                        ForEach(desireCardList, id:\.card_id){ card in
-                                            CardItemView(card: card)
-                                        }
-                                    })
-                                }
-                            }else{
-                                ScrollView(.horizontal){
-                                    LazyHGrid(rows: [GridItem()], content:{
-                                        ForEach(desireCardList, id:\.card_id){ card in
-                                            CardItemView(card: card)
-                                        }
-                                    }).frame(height:height*0.4).padding(.leading)
-                                }
-                            }
+//                            if showAllDesireItems {
+//                                ScrollView{
+//                                    LazyVGrid(columns: showAllDesireItems ? colums : [GridItem()], content: /*@START_MENU_TOKEN@*/{
+//                                        ForEach(desireCardList, id:\.card_id){ card in
+//                                            CardItemView(card: card)
+//                                        }
+//                                    })
+//                                }
+//                            }else{
+//                                ScrollView(.horizontal){
+//                                    LazyHGrid(rows: [GridItem()], content:{
+//                                        ForEach(desireCardList, id:\.card_id){ card in
+//                                            CardItemView(card: card)
+//                                        }
+//                                    }).frame(height:height*0.4).padding(.leading)
+//                                }
+//                            }
                             
                             VStack(alignment: .leading){
                                 Divider().padding(.top)

@@ -24,6 +24,18 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
             image = uiImage
             isShown = false
             arrayImage.append(image)
+            
+            if arrayImage.count == 4{
+                for i in 0...arrayImage.count{
+                    if (image?.jpegData(compressionQuality: 0.9)) != nil {
+                        let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                        let url = documents.appendingPathComponent("2cv\(i).jpg")
+                        var urlsArray = [url]
+                        urlsArray.append(url)
+                        dump(urlsArray)
+                    }
+                }
+            }
         }
     }
     

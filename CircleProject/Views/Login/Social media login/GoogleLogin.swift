@@ -19,7 +19,8 @@ struct GoogleLogin: View {
             Image("google")
                 .resizable()
                 .scaledToFit()
-        }).fullScreenCover(isPresented: $isMainMenuPresented, content: TabUIView.init)
+        })
+//        .fullScreenCover(isPresented: $isMainMenuPresented, content: TabUIView.init)
     }
 }
 

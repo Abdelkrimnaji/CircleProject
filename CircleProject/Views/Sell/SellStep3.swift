@@ -12,6 +12,9 @@ struct SellStep3: View {
     @State private var diffuseForFriends = false
     @State private var diffuseForPro = false
     @State private var diffuseForPublic = false
+    @State var circle = [Circles(name: "Cercle Familial"),Circles(name: "Cercle Amical"),Circles(name: "Cercle Professionnel"),Circles(name: "Cercle Public")]
+    @ObservedObject var dealOffer: Deal
+    
     var body: some View {
         VStack {
             HStack {
@@ -27,27 +30,22 @@ struct SellStep3: View {
                     .opacity(0.6)
                     .padding(.bottom)
                 Spacer()
-            }
-            Toggle(isOn: $diffuseForFamily) {
-                Text("Cercle Familial")
-                    .fontWeight(.bold)
-                    .foregroundColor(Color(red: 253/255, green: 143/255, blue: 147/255))
-            }.padding(.horizontal)
-            Toggle(isOn: $diffuseForFriends) {
-                Text("Cercle Amical")
-                    .fontWeight(.bold)
-                    .foregroundColor(Color(red: 214/255, green: 101/255, blue: 105/255))
-            }.padding(.horizontal)
-            Toggle(isOn: $diffuseForPro) {
-                Text("Cercle Professionnel")
-                    .fontWeight(.bold)
-                    .foregroundColor(Color(red: 235/255, green: 71/255, blue: 78/255))
-            }.padding(.horizontal)
-            Toggle(isOn: $diffuseForPublic) {
-                Text("Cercle Public")
-                    .fontWeight(.bold)
-                    .foregroundColor(Color(red: 168/255, green: 42/255, blue: 48/255))
-            }.padding(.horizontal)
+            }.padding(.bottom)
+            ForEach(circle.indices){ i in
+                Toggle(isOn: $circle[i].value){
+                    Text(circle[i].name)
+                        .fontWeight(.bold)
+                        .foregroundColor(circle[i].circleColor[i])
+                }.padding(.horizontal)
+                .onChange(of: circle[i].value, perform: { value in
+                    if value{
+                        dealOffer.circles.append(circle[i].name)
+                    }else{
+                        let index = dealOffer.circles.firstIndex(of: circle[i].name)
+                        dealOffer.circles.remove(at: index!)
+                    }
+                })
+            }.padding(.top)
             Spacer()
         }.toggleStyle(SwitchToggleStyle(tint: Color(red: 253/255, green: 143/255, blue: 147/255)))
     }
@@ -55,6 +53,6 @@ struct SellStep3: View {
 
 struct SellStep3_Previews: PreviewProvider {
     static var previews: some View {
-        SellStep3()
+        SellStep3(dealOffer: Deal())
     }
 }

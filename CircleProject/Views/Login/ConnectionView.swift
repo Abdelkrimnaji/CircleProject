@@ -9,10 +9,11 @@ import SwiftUI
 
 struct ConnectionView: View {
     var width = UIScreen.main.bounds.width
-    @State var username:String = ""
-    @State var password:String = ""
+    @State var username = ""
+    @State var password = ""
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var isMainMenuPresented = false
+    
     var body: some View {
         VStack {
             Spacer()
@@ -44,7 +45,7 @@ struct ConnectionView: View {
                 }
                 .foregroundColor(.white)
                 .padding(10)
-                .fullScreenCover(isPresented: $isMainMenuPresented, content: TabUIView.init)
+//                .fullScreenCover(isPresented: $isMainMenuPresented, content: TabUIView.init)
                 .frame(width: width*0.7)
                 .background(Color(red: 0.996, green: 0.557, blue: 0.576))
             }
@@ -62,7 +63,7 @@ struct ConnectionView: View {
                 }.frame(width: width*0.35)
                 HStack{
                     Button(action: {
-//                        Api().register(completion: <#(messagesServer?, Error?) -> ()#>)
+//                        Api().register(completion: (messagesServer?, Error?) -> ())
                     }, label: {
                         Image("twitter")
                             .resizable()

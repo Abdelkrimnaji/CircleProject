@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		270A176F25A60973006AE36A /* CircleFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A176E25A60973006AE36A /* CircleFamilyView.swift */; };
-		270A177125A609ED006AE36A /* CircleFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A177025A609ED006AE36A /* CircleFriendsView.swift */; };
-		270A177325A60A1A006AE36A /* CircleProView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A177225A60A1A006AE36A /* CircleProView.swift */; };
+		270B240625D7F08E000B9DCA /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270B240525D7F08E000B9DCA /* MapViewModel.swift */; };
+		270B240825D82B98000B9DCA /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270B240725D82B98000B9DCA /* LocationView.swift */; };
 		271255BB257E32930075040C /* ApiCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271255BA257E32930075040C /* ApiCalls.swift */; };
 		2718CFC82577A4DC008F8D3A /* GoogleLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2718CFC72577A4DC008F8D3A /* GoogleLogin.swift */; };
 		2718CFD52577AF54008F8D3A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2718CFD42577AF54008F8D3A /* GoogleService-Info.plist */; };
@@ -27,6 +27,7 @@
 		2726CEF925587E52003564C4 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2726CEF825587E52003564C4 /* DataStore.swift */; };
 		2726CEFD25588005003564C4 /* CardItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2726CEFC25588005003564C4 /* CardItemView.swift */; };
 		2747E93325653EC800FD1537 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2747E93225653EC800FD1537 /* MenuView.swift */; };
+		274BAEEB25EFA4CE00EF0A81 /* UserPositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BAEEA25EFA4CE00EF0A81 /* UserPositionView.swift */; };
 		2762A5DB25C0510F00A5C095 /* SellStep2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2762A5DA25C0510F00A5C095 /* SellStep2.swift */; };
 		2762A5DD25C0660A00A5C095 /* SellStep1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2762A5DC25C0660A00A5C095 /* SellStep1.swift */; };
 		2762A5E725C2C4E300A5C095 /* SellCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2762A5E625C2C4E300A5C095 /* SellCategoriesView.swift */; };
@@ -42,13 +43,17 @@
 		27B32AE32591129100DE368B /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B32AE02591129100DE368B /* WebView.swift */; };
 		27B32AE42591129100DE368B /* InstagramTestUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B32AE12591129100DE368B /* InstagramTestUser.swift */; };
 		27B32AE6259112B500DE368B /* InstaUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B32AE5259112B500DE368B /* InstaUIView.swift */; };
-		27B32AED259231C900DE368B /* CircleViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B32AEC259231C900DE368B /* CircleViewConfig.swift */; };
 		27B82BF825602CBA001F0760 /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B82BF725602CBA001F0760 /* ConnectionView.swift */; };
 		27B82BFB25603C20001F0760 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B82BFA25603C20001F0760 /* TabView.swift */; };
+		27B8E4FD25F50EEB009F113C /* CircleObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B8E4FC25F50EEB009F113C /* CircleObject.swift */; };
 		27CF2DDB25C88713003AF038 /* SellStep3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CF2DDA25C88713003AF038 /* SellStep3.swift */; };
 		27CF2DDD25C965B9003AF038 /* SellStep4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CF2DDC25C965B9003AF038 /* SellStep4.swift */; };
 		27CF2DDF25C96EC1003AF038 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CF2DDE25C96EC1003AF038 /* MapView.swift */; };
 		27F6E77D256690C500B3B862 /* CategoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F6E77C256690C500B3B862 /* CategoryItemView.swift */; };
+		27F85A0F25EEAACB005025B7 /* UserLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F85A0E25EEAACB005025B7 /* UserLocationView.swift */; };
+		27F85A1125EEABCF005025B7 /* RegionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F85A1025EEABCF005025B7 /* RegionView.swift */; };
+		27F85A1325EEAC74005025B7 /* DepartmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F85A1225EEAC74005025B7 /* DepartmentView.swift */; };
+		27F85A1625EEB084005025B7 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F85A1525EEB084005025B7 /* CityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -67,8 +72,8 @@
 
 /* Begin PBXFileReference section */
 		270A176E25A60973006AE36A /* CircleFamilyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFamilyView.swift; sourceTree = "<group>"; };
-		270A177025A609ED006AE36A /* CircleFriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFriendsView.swift; sourceTree = "<group>"; };
-		270A177225A60A1A006AE36A /* CircleProView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProView.swift; sourceTree = "<group>"; };
+		270B240525D7F08E000B9DCA /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		270B240725D82B98000B9DCA /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		271255BA257E32930075040C /* ApiCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCalls.swift; sourceTree = "<group>"; };
 		2718CFC72577A4DC008F8D3A /* GoogleLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLogin.swift; sourceTree = "<group>"; };
 		2718CFD42577AF54008F8D3A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -86,6 +91,7 @@
 		2726CEF825587E52003564C4 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		2726CEFC25588005003564C4 /* CardItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItemView.swift; sourceTree = "<group>"; };
 		2747E93225653EC800FD1537 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		274BAEEA25EFA4CE00EF0A81 /* UserPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPositionView.swift; sourceTree = "<group>"; };
 		2762A5DA25C0510F00A5C095 /* SellStep2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellStep2.swift; sourceTree = "<group>"; };
 		2762A5DC25C0660A00A5C095 /* SellStep1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellStep1.swift; sourceTree = "<group>"; };
 		2762A5E625C2C4E300A5C095 /* SellCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellCategoriesView.swift; sourceTree = "<group>"; };
@@ -100,13 +106,17 @@
 		27B32AE02591129100DE368B /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		27B32AE12591129100DE368B /* InstagramTestUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramTestUser.swift; sourceTree = "<group>"; };
 		27B32AE5259112B500DE368B /* InstaUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstaUIView.swift; sourceTree = "<group>"; };
-		27B32AEC259231C900DE368B /* CircleViewConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleViewConfig.swift; sourceTree = "<group>"; };
 		27B82BF725602CBA001F0760 /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
 		27B82BFA25603C20001F0760 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		27B8E4FC25F50EEB009F113C /* CircleObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleObject.swift; sourceTree = "<group>"; };
 		27CF2DDA25C88713003AF038 /* SellStep3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellStep3.swift; sourceTree = "<group>"; };
 		27CF2DDC25C965B9003AF038 /* SellStep4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellStep4.swift; sourceTree = "<group>"; };
 		27CF2DDE25C96EC1003AF038 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		27F6E77C256690C500B3B862 /* CategoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemView.swift; sourceTree = "<group>"; };
+		27F85A0E25EEAACB005025B7 /* UserLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationView.swift; sourceTree = "<group>"; };
+		27F85A1025EEABCF005025B7 /* RegionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionView.swift; sourceTree = "<group>"; };
+		27F85A1225EEAC74005025B7 /* DepartmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentView.swift; sourceTree = "<group>"; };
+		27F85A1525EEB084005025B7 /* CityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
 		27FB9420D724E2022C5ED08B /* Pods-CircleProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CircleProject.release.xcconfig"; path = "Target Support Files/Pods-CircleProject/Pods-CircleProject.release.xcconfig"; sourceTree = "<group>"; };
 		B427701B51A473A2D8BF0F53 /* Pods-CircleProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CircleProject.debug.xcconfig"; path = "Target Support Files/Pods-CircleProject/Pods-CircleProject.debug.xcconfig"; sourceTree = "<group>"; };
 		F704F6F07DD0F03E6DE2404C /* Pods_CircleProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CircleProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +135,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		270B240425D7F06B000B9DCA /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				27CF2DDE25C96EC1003AF038 /* MapView.swift */,
+				270B240525D7F08E000B9DCA /* MapViewModel.swift */,
+				270B240725D82B98000B9DCA /* LocationView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		2718CFC62577A4B9008F8D3A /* Social media login */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,7 +180,6 @@
 				2726CED4255874CA003564C4 /* CircleProjectApp.swift */,
 				27F6E7A1256AB02600B3B862 /* Models */,
 				27F6E7A2256AB03300B3B862 /* Views */,
-				27F6E7A3256AB03A00B3B862 /* ViewModels */,
 				2726CED6255874CA003564C4 /* ContentView.swift */,
 				2726CED8255874CE003564C4 /* Assets.xcassets */,
 				2726CEDD255874CE003564C4 /* Info.plist */,
@@ -191,14 +210,12 @@
 		27CE1EB1258E199600F63BF7 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
+				27F85A1425EEB067005025B7 /* UserLocation */,
 				276BE7B02559B87F0000889A /* RegisterView.swift */,
 				279F5861256681D8000577DA /* CategorySelectionView.swift */,
 				27F6E77C256690C500B3B862 /* CategoryItemView.swift */,
-				27B32AEC259231C900DE368B /* CircleViewConfig.swift */,
 				278FCF2225A3626900604006 /* TutoCircles.swift */,
 				270A176E25A60973006AE36A /* CircleFamilyView.swift */,
-				270A177025A609ED006AE36A /* CircleFriendsView.swift */,
-				270A177225A60A1A006AE36A /* CircleProView.swift */,
 			);
 			path = Intro;
 			sourceTree = "<group>";
@@ -217,6 +234,7 @@
 			children = (
 				2726CEF825587E52003564C4 /* DataStore.swift */,
 				271255BA257E32930075040C /* ApiCalls.swift */,
+				27B8E4FC25F50EEB009F113C /* CircleObject.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -234,13 +252,6 @@
 				27D9C997256BC7870046BA78 /* Shared */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		27F6E7A3256AB03A00B3B862 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		27F6E7A4256AB0B800B3B862 /* Home */ = {
@@ -279,15 +290,15 @@
 		27F6E7A8256AB0F300B3B862 /* Sell */ = {
 			isa = PBXGroup;
 			children = (
+				270B240425D7F06B000B9DCA /* Map */,
+				2726CEEB255875B4003564C4 /* CreateDealView.swift */,
 				2762A5E625C2C4E300A5C095 /* SellCategoriesView.swift */,
 				2762A5E825C2CD9100A5C095 /* SellSubCategoryView.swift */,
-				2726CEEB255875B4003564C4 /* CreateDealView.swift */,
 				2762A5DC25C0660A00A5C095 /* SellStep1.swift */,
 				2762A5DA25C0510F00A5C095 /* SellStep2.swift */,
 				27CF2DDA25C88713003AF038 /* SellStep3.swift */,
 				27CF2DDC25C965B9003AF038 /* SellStep4.swift */,
 				27915B8E25C566AC00CD4BE5 /* CameraAndGallery.swift */,
-				27CF2DDE25C96EC1003AF038 /* MapView.swift */,
 			);
 			path = Sell;
 			sourceTree = "<group>";
@@ -300,6 +311,18 @@
 				27B82BF725602CBA001F0760 /* ConnectionView.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		27F85A1425EEB067005025B7 /* UserLocation */ = {
+			isa = PBXGroup;
+			children = (
+				27F85A0E25EEAACB005025B7 /* UserLocationView.swift */,
+				27F85A1225EEAC74005025B7 /* DepartmentView.swift */,
+				27F85A1025EEABCF005025B7 /* RegionView.swift */,
+				27F85A1525EEB084005025B7 /* CityView.swift */,
+				274BAEEA25EFA4CE00EF0A81 /* UserPositionView.swift */,
+			);
+			path = UserLocation;
 			sourceTree = "<group>";
 		};
 		30FBCF7A11E776F9E074D23A /* Frameworks */ = {
@@ -458,8 +481,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				270A177325A60A1A006AE36A /* CircleProView.swift in Sources */,
 				276BE7B12559B87F0000889A /* RegisterView.swift in Sources */,
+				27F85A1125EEABCF005025B7 /* RegionView.swift in Sources */,
 				2726CEE82558755D003564C4 /* SearchView.swift in Sources */,
 				2762A5DD25C0660A00A5C095 /* SellStep1.swift in Sources */,
 				27B82BFB25603C20001F0760 /* TabView.swift in Sources */,
@@ -475,15 +498,20 @@
 				2747E93325653EC800FD1537 /* MenuView.swift in Sources */,
 				2718CFC82577A4DC008F8D3A /* GoogleLogin.swift in Sources */,
 				27CF2DDB25C88713003AF038 /* SellStep3.swift in Sources */,
+				270B240825D82B98000B9DCA /* LocationView.swift in Sources */,
+				27F85A1625EEB084005025B7 /* CityView.swift in Sources */,
 				279F5862256681D8000577DA /* CategorySelectionView.swift in Sources */,
-				27B32AED259231C900DE368B /* CircleViewConfig.swift in Sources */,
-				270A177125A609ED006AE36A /* CircleFriendsView.swift in Sources */,
+				27B8E4FD25F50EEB009F113C /* CircleObject.swift in Sources */,
+				270B240625D7F08E000B9DCA /* MapViewModel.swift in Sources */,
+				27F85A0F25EEAACB005025B7 /* UserLocationView.swift in Sources */,
 				2762A5DB25C0510F00A5C095 /* SellStep2.swift in Sources */,
 				27B32AE22591129100DE368B /* InstagramApi.swift in Sources */,
 				27F6E77D256690C500B3B862 /* CategoryItemView.swift in Sources */,
 				2726CED7255874CA003564C4 /* ContentView.swift in Sources */,
+				274BAEEB25EFA4CE00EF0A81 /* UserPositionView.swift in Sources */,
 				27915B8F25C566AC00CD4BE5 /* CameraAndGallery.swift in Sources */,
 				27CF2DDF25C96EC1003AF038 /* MapView.swift in Sources */,
+				27F85A1325EEAC74005025B7 /* DepartmentView.swift in Sources */,
 				27B32AE42591129100DE368B /* InstagramTestUser.swift in Sources */,
 				2726CEFD25588005003564C4 /* CardItemView.swift in Sources */,
 				2726CEEC255875B4003564C4 /* CreateDealView.swift in Sources */,
