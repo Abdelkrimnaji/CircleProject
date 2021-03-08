@@ -16,7 +16,7 @@ struct ContentView: View {
 //        TabUIView(viewRouter: viewRouter)
 //        }else{
 //            FirstScreenView()
-TutoCircles()
+        TutoCircles(circle: CircleObject.familial)
         //        }
     }
 }

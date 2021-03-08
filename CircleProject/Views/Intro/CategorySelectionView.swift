@@ -43,7 +43,7 @@ struct CategorySelectionView: View {
                             Text("Suivant")
                                 .foregroundColor(.white)
                         })
-                        .fullScreenCover(isPresented: $isTutoCirclesPresented, content: TutoCircles.init)
+//                        .fullScreenCover(isPresented: $isTutoCirclesPresented, content: TutoCircles.init)
                         .frame(width: width*0.8)
                         .padding()
                         .background(Color(red: 0.996, green: 0.557, blue: 0.576))

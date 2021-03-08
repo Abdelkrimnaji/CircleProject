@@ -12,6 +12,8 @@ struct TutoCircles: View {
      var height = UIScreen.main.bounds.height
     @State var tutoStep = 0
     @State var bounce = true
+    var circle: CircleObject
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -35,39 +37,18 @@ struct TutoCircles: View {
                                 
                                 ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
                                     VStack(alignment: .leading,spacing: 10){
-                                        HStack{
-                                            Image(systemName: "circle.fill")
-                                                .font(.custom("", fixedSize: 8))
-                                                .foregroundColor(Color(red: 205/255, green: 205/255, blue: 205/255))
-                                            Text("Cercle Familial")
-                                                .fontWeight(.bold)
-                                                .foregroundColor(Color(red: 253/255, green: 143/255, blue: 147/255))
-                                        }
-                                        HStack{
-                                            Image(systemName: "circle.fill")
-                                                .font(.custom("", fixedSize: 8))
-                                                .foregroundColor(Color(red: 205/255, green: 205/255, blue: 205/255))
-                                            Text("Cercle Amical")
-                                                .fontWeight(.bold)
-                                                .foregroundColor(Color(red: 214/255, green: 101/255, blue: 105/255))
-                                        }
-                                        HStack{
-                                            Image(systemName: "circle.fill")
-                                                .font(.custom("", fixedSize: 8))
-                                                .foregroundColor(Color(red: 205/255, green: 205/255, blue: 205/255))
-                                            Text("Cercle Professionnel")
-                                                .fontWeight(.bold)
-                                                .foregroundColor(Color(red: 235/255, green: 71/255, blue: 78/255))
-                                        }
-                                        HStack{
-                                            Image(systemName: "circle.fill")
-                                                .font(.custom("", fixedSize: 8))
-                                                .foregroundColor(Color(red: 205/255, green: 205/255, blue: 205/255))
-                                            Text("Cercle Public")
-                                                .fontWeight(.bold)
-                                                .foregroundColor(Color(red: 168/255, green: 42/255, blue: 48/255))
+                                        ForEach(CircleObject.circles.indices){ i in
+                                            HStack{
+                                                Image(systemName: "circle.fill")
+                                                    .font(.custom("", fixedSize: 8))
+                                                    .foregroundColor(Color(red: 205/255, green: 205/255, blue: 205/255))
+                                                Text(CircleObject.circles[i].name)
+                                                    .fontWeight(.bold)
+                                                    .foregroundColor(CircleObject.circles[i].color)
+                                            }
                                         }
                                     }.padding(.leading, width*0.15)
+                                    
                                     Rectangle().fill(Color(red: 233/255, green: 233/255, blue: 233/255, opacity: tutoStep != 0 ? 0.8 : 0))
                                     if tutoStep == 1{
                                         HStack{
@@ -145,7 +126,7 @@ struct TutoCircles: View {
                                 
                                 if tutoStep == 1{
                                     NavigationLink(
-                                        destination: CircleFamilyView(tutoStep: self.$tutoStep),
+                                        destination: CirclesConfigView(tutoStep: self.$tutoStep, circle: CircleObject.familial),
                                         label: {
                                             Image("CercleFamille")
                                                 .resizable()
@@ -158,7 +139,7 @@ struct TutoCircles: View {
                                 }else if tutoStep == 2{
                                     ZStack{
                                         NavigationLink(
-                                            destination: CircleFriendsView(tutoStep: self.$tutoStep),
+                                            destination: CirclesConfigView(tutoStep: self.$tutoStep, circle: CircleObject.amical),
                                             label: {
                                                 Circle().stroke(Color.white, lineWidth: 50)
                                                     .frame(width: width*0.4)
@@ -172,7 +153,7 @@ struct TutoCircles: View {
                                 }else if tutoStep == 3{
                                     ZStack {
                                         NavigationLink(
-                                            destination: CircleProView(tutoStep: self.$tutoStep),
+                                            destination: CirclesConfigView(tutoStep: self.$tutoStep, circle: CircleObject.professionnel),
                                             label: {
                                                 Circle().stroke(Color.white, lineWidth: 50)
                                                     .frame(width: width*0.6)
@@ -213,8 +194,6 @@ struct TutoCircles: View {
                 }.zIndex(1.0)
                 Rectangle().fill(Color(red: 233/255, green: 233/255, blue: 233/255, opacity: tutoStep != 0 ? 0.8 : 0))
                     .edgesIgnoringSafeArea(.all)
-            }.onAppear(){
-                print(tutoStep)
             }
         }
     }
@@ -223,7 +202,7 @@ struct TutoCircles: View {
 struct TutoCircles_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            TutoCircles()
+            TutoCircles(circle: CircleObject(name: "Familial", image: nil, color: Color.black, type: .familial))
         }
     }
 }

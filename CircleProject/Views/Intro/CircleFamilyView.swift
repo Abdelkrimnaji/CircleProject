@@ -7,14 +7,16 @@
 
 import SwiftUI
 
-struct CircleFamilyView: View {
-    @State  var pseudo = ""
-    @State  var email = ""
+struct CirclesConfigView: View {
+    @State private var pseudo = ""
+    @State private var email = ""
     var width = UIScreen.main.bounds.width
-    @State var isTutoCirclesPresented = false
+    @State private var isTutoCirclesPresented = false
     @Binding var tutoStep: Int
+    @State var isMainMenuPresented = false
     
     @State var usersList: [User] = []
+    var circle: CircleObject
     
     var body: some View {
         VStack {
@@ -25,16 +27,18 @@ struct CircleFamilyView: View {
                     Spacer()
                 }
                 HStack {
-                    Text("Cercle Familial")
+                    Text(circle.name)
                         .fontWeight(.bold)
                         .font(.title)
                         .foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576))
                     Spacer()
                 }.padding(.top, 5)
-                Image("logoCircle")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100)
+                if circle.image != nil{
+                    circle.image!
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100)
+                }
             }.padding(.top)
             VStack {
                 VStack(alignment: .leading) {
@@ -48,9 +52,10 @@ struct CircleFamilyView: View {
                         }.overlay(Rectangle().frame(width: 2, height: nil, alignment: .leading).foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576)), alignment: .leading)
                     
                     ForEach(usersList, id: \.id){ user in
-                        Text(user.name ?? "")
+                        Text(user.name)
                             .onTapGesture{
-                                self.pseudo = user.name ?? ""
+                                self.circle.addUser(user)
+                                self.pseudo = user.name
                                 self.usersList.removeAll()
                             }
                     }
@@ -61,7 +66,7 @@ struct CircleFamilyView: View {
                 VStack(alignment: .leading) {
                     Text("Invitez vos proches :")
                         .font(.title)
-                        .foregroundColor(Color(red: 90/255, green: 105/255, blue: 120/255))
+                        .foregroundColor(circle.color)
                     HStack {
                         TextField("Email", text: $email)
                             .font(.title)
@@ -88,12 +93,19 @@ struct CircleFamilyView: View {
             }
             Spacer()
             Button(action: {
-                self.isTutoCirclesPresented.toggle()
                 self.tutoStep += 1
+                if tutoStep > 3{
+                    self.isMainMenuPresented.toggle()
+                }else{
+                    self.isTutoCirclesPresented.toggle()
+                }
             }, label: {
                 Text("Suivant")
                     .foregroundColor(.white)
             })
+            .fullScreenCover(isPresented: $isMainMenuPresented){
+                TabUIView(viewRouter: ViewRouter())
+            }
             .frame(width: width*0.8)
             .padding()
             .background(Color(red: 0.996, green: 0.557, blue: 0.576))
@@ -126,8 +138,8 @@ struct CircleFamilyView: View {
     }
 }
 
-struct CircleFamilyView_Previews: PreviewProvider {
+struct CirclesConfigView_Previews: PreviewProvider {
     static var previews: some View {
-        CircleFamilyView(tutoStep: .constant(1))
+        CirclesConfigView(tutoStep: .constant(1), circle: CircleObject(name: "Familial", image: nil, color: Color.black, type: .familial))
     }
 }
