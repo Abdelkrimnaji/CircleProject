@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		270A176F25A60973006AE36A /* CircleFamilyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A176E25A60973006AE36A /* CircleFamilyView.swift */; };
+		270A176F25A60973006AE36A /* CirclesConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A176E25A60973006AE36A /* CirclesConfigView.swift */; };
 		270B240625D7F08E000B9DCA /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270B240525D7F08E000B9DCA /* MapViewModel.swift */; };
 		270B240825D82B98000B9DCA /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270B240725D82B98000B9DCA /* LocationView.swift */; };
 		271255BB257E32930075040C /* ApiCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271255BA257E32930075040C /* ApiCalls.swift */; };
@@ -71,7 +71,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		270A176E25A60973006AE36A /* CircleFamilyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFamilyView.swift; sourceTree = "<group>"; };
+		270A176E25A60973006AE36A /* CirclesConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesConfigView.swift; sourceTree = "<group>"; };
 		270B240525D7F08E000B9DCA /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		270B240725D82B98000B9DCA /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		271255BA257E32930075040C /* ApiCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCalls.swift; sourceTree = "<group>"; };
@@ -215,7 +215,7 @@
 				279F5861256681D8000577DA /* CategorySelectionView.swift */,
 				27F6E77C256690C500B3B862 /* CategoryItemView.swift */,
 				278FCF2225A3626900604006 /* TutoCircles.swift */,
-				270A176E25A60973006AE36A /* CircleFamilyView.swift */,
+				270A176E25A60973006AE36A /* CirclesConfigView.swift */,
 			);
 			path = Intro;
 			sourceTree = "<group>";
@@ -486,7 +486,7 @@
 				2726CEE82558755D003564C4 /* SearchView.swift in Sources */,
 				2762A5DD25C0660A00A5C095 /* SellStep1.swift in Sources */,
 				27B82BFB25603C20001F0760 /* TabView.swift in Sources */,
-				270A176F25A60973006AE36A /* CircleFamilyView.swift in Sources */,
+				270A176F25A60973006AE36A /* CirclesConfigView.swift in Sources */,
 				2726CEF925587E52003564C4 /* DataStore.swift in Sources */,
 				27B32AE6259112B500DE368B /* InstaUIView.swift in Sources */,
 				2762A5E925C2CD9100A5C095 /* SellSubCategoryView.swift in Sources */,
