@@ -214,3 +214,15 @@ struct Departement: Codable {
     var code: String
     var departement: [String:String]
 }
+
+struct Notification: Codable {
+    enum CodingKeys: String, CodingKey {
+        case receiverId = "receiver_id"
+        case senderId = "sender_id"
+        case text,id
+    }
+    var id: String
+    var receiverId: String
+    var senderId: String
+    var text: String
+}

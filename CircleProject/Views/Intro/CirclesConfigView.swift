@@ -18,6 +18,8 @@ struct CirclesConfigView: View {
     @State var usersList: [User] = []
     var circle: CircleObject
     
+    @Binding var shouldPopToRootView : Bool
+    
     var body: some View {
         VStack {
             VStack{
@@ -33,12 +35,10 @@ struct CirclesConfigView: View {
                         .foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576))
                     Spacer()
                 }.padding(.top, 5)
-                if circle.image != nil{
-                    circle.image!
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100)
-                }
+                circle.image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100)
             }.padding(.top)
             VStack {
                 VStack(alignment: .leading) {
@@ -66,7 +66,7 @@ struct CirclesConfigView: View {
                 VStack(alignment: .leading) {
                     Text("Invitez vos proches :")
                         .font(.title)
-                        .foregroundColor(circle.color)
+                        .foregroundColor(Color(red: 90/255, green: 105/255, blue: 120/255))
                     HStack {
                         TextField("Email", text: $email)
                             .font(.title)
@@ -93,10 +93,11 @@ struct CirclesConfigView: View {
             }
             Spacer()
             Button(action: {
-                self.tutoStep += 1
-                if tutoStep > 3{
+                if tutoStep >= 3{
                     self.isMainMenuPresented.toggle()
                 }else{
+                    self.tutoStep += 1
+                    self.shouldPopToRootView = false
                     self.isTutoCirclesPresented.toggle()
                 }
             }, label: {
@@ -112,16 +113,11 @@ struct CirclesConfigView: View {
             .cornerRadius(12)
         }.padding()
         .onChange(of: self.pseudo, perform: { value in
-//            self.cleanList = false
             Api().getUsers(username: self.pseudo,completion: { (users, error) in
                 if error != nil{
                     print(error!.localizedDescription)
                 }else if let users = users{
-//                    if !cleanList{
                         self.usersList = users
-//                    }else{
-//                        self.usersList = []
-//                    }
                 }
             })
         })
@@ -140,6 +136,6 @@ struct CirclesConfigView: View {
 
 struct CirclesConfigView_Previews: PreviewProvider {
     static var previews: some View {
-        CirclesConfigView(tutoStep: .constant(1), circle: CircleObject(name: "Familial", image: nil, color: Color.black, type: .familial))
+        CirclesConfigView(tutoStep: .constant(0), circle: CircleObject(name: "Familial", image: Image("CercleFamille"), color: Color.black, type: .familial, size: 0.25), shouldPopToRootView: .constant(false))
     }
 }

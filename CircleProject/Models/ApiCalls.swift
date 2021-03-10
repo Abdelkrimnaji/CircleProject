@@ -403,7 +403,6 @@ struct Api {
                 DispatchQueue.main.async {
                     completion(nil,error)
                 }
-                print(error)
             }
         }
         task.resume()
@@ -440,7 +439,6 @@ struct Api {
                 DispatchQueue.main.async {
                     completion(nil,error)
                 }
-                print(error)
             }
         }
         task.resume()
@@ -480,7 +478,42 @@ struct Api {
                 DispatchQueue.main.async {
                     completion(nil,error)
                 }
-                print(error)
+            }
+        }
+        task.resume()
+    }
+    
+    func getNotifications(completion: @escaping ([Notification]?,Error?) -> ()) {
+        guard let url = URL(string: "http://localhost/CircleApiV2/index.php/message")else{
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request){ (data,response,error) in
+            
+            guard let data = data, error == nil else {
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+                return
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+                return
+            }
+            do{
+                let notifications = try JSONDecoder().decode([Notification].self, from: data)
+                DispatchQueue.main.async {
+                    completion(notifications,nil)
+                }
+            }catch(let error){
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
             }
         }
         task.resume()
