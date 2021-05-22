@@ -23,7 +23,7 @@ struct TabUIView: View {
                 case .messages:
                     MessagesView()
                 case .circle:
-                    Text("Circle")
+                    CircleView()
                 }
                 Spacer()
                 ZStack {
@@ -61,8 +61,8 @@ struct TabBarIcon: View {
     let assignedPage: Page
     let width, height: CGFloat
     let systemIconName, tabName: String
-    
     @State private var isMainMenuPresented = false
+    
     var body: some View {
         VStack {
             Image(systemName: systemIconName)

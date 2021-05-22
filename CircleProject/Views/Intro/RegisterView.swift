@@ -14,10 +14,10 @@ struct RegisterView: View {
     private let checklistItem = [ "Homme", "Femme", "Autre"]
     @State var selectedGender: String? = nil
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @StateObject var user: User
+    @ObservedObject var user: User
+    @State var pseudo = ""
     
     var body: some View {
-        
         NavigationView{
             VStack(spacing: 20) {
                 if registerStep == 33.3{
@@ -25,7 +25,9 @@ struct RegisterView: View {
                         Text("Quel est votre pseudo ?")
                             .font(.title2)
                         HStack {
-                            TextField("Pseudo", text: $user.name)
+                            TextField("Pseudo", text: $pseudo, onCommit: {
+                                self.user.name = self.pseudo
+                                  })
                                 .disableAutocorrection(true)
                                 .font(.title2)
                                 .padding(.leading, 5)

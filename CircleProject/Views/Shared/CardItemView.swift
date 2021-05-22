@@ -48,7 +48,7 @@ struct CardItemView: View {
                             .foregroundColor(Color(red: 0.996, green: 0.557, blue: 0.576))
                     }
                 Spacer()
-            }.padding(.leading, 0)
+            }
         }
         .frame(width: width*0.38, height:height*0.3)
         .padding()

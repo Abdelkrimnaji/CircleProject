@@ -8,16 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    
     @State var objects: [CardItem] = []
-//    var desireCardList: [CardItem] = [
-//        CardItem(profileImage: "person.crop.circle.fill", card_id: "100", profileName: "Jo du 77", cardImage: "chemise", title: "Chemise", category: "Mode", price: "55", description: ""),
-//        CardItem(profileImage: "person.crop.circle.fill", card_id: "101", profileName: "Bob", cardImage: "montre", title: "Fossil", category: "Mode", price: "150", description: ""),
-//        CardItem(profileImage: "person.crop.circle.fill", card_id: "102", profileName: "Donald", cardImage: "2cv", title: "Citroen 2CV 1988", category: "Voiture", price: "150000", description: ""),
-//        CardItem(profileImage: "person.crop.circle.fill", card_id: "103", profileName: "Abdoul701", cardImage: "real", title: "Mallot \"Authentique\" Real", category: "Mode", price: "60", description: ""),
-//        CardItem(profileImage: "person.crop.circle.fill", card_id: "104", profileName: "Palermo70", cardImage: "rolex", title: "Rolex Date Just", category: "Mode", price: "10000", description: ""),
-//        CardItem(profileImage: "person.crop.circle.fill", card_id: "105", profileName: "So701", cardImage: "clio", title: "Clio IV GT 2019", category: "Voiture", price: "15000", description: "")
-//    ]
     let colums = [
         GridItem(.adaptive(minimum: 150))
     ]
@@ -30,8 +21,8 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView{
-                ZStack(alignment: .leading){
+            ZStack(alignment: .leading){
+                ScrollView{
                     ZStack {
                         VStack(alignment: .leading){
                             Text("Fil d'actualités")
@@ -46,15 +37,13 @@ struct HomeView: View {
                                 Text("Annonces selon vos cercles")
                                     .foregroundColor(.gray)
                             }).padding(.leading)
-                            
-                            
                             if showAllCirleItems{
                                 ScrollView(.vertical){
                                     LazyVGrid(columns: [GridItem(),GridItem()], content: /*@START_MENU_TOKEN@*/{
                                         ForEach(objects, id:\.card_id){ object in
                                             CardItemView(card: object)
                                         }
-                                    })
+                                    }).padding(.top)
                                 }
                             }else{
                                 ScrollView(.horizontal){
@@ -62,8 +51,7 @@ struct HomeView: View {
                                         ForEach(objects, id:\.card_id){ object in
                                             CardItemView(card: object)
                                         }
-                                    })
-                                    .padding(.leading)
+                                    }).padding(.leading, 5)
                                     .onAppear{
                                         Api().getObjects { (object,error)  in
                                             if error != nil{
@@ -83,27 +71,27 @@ struct HomeView: View {
                             }
                             Divider()
                             Button(action: {self.showAllDesireItems.toggle()}, label: {
-                                Text("Annonces selon vous envies")
+                                Text("Annonces selon vos envies")
                                     .foregroundColor(.gray)
                             }).padding(.leading)
                             
-//                            if showAllDesireItems {
-//                                ScrollView{
-//                                    LazyVGrid(columns: showAllDesireItems ? colums : [GridItem()], content: /*@START_MENU_TOKEN@*/{
-//                                        ForEach(desireCardList, id:\.card_id){ card in
-//                                            CardItemView(card: card)
-//                                        }
-//                                    })
-//                                }
-//                            }else{
-//                                ScrollView(.horizontal){
-//                                    LazyHGrid(rows: [GridItem()], content:{
-//                                        ForEach(desireCardList, id:\.card_id){ card in
-//                                            CardItemView(card: card)
-//                                        }
-//                                    }).frame(height:height*0.4).padding(.leading)
-//                                }
-//                            }
+                            //                            if showAllDesireItems {
+                            //                                ScrollView{
+                            //                                    LazyVGrid(columns: showAllDesireItems ? colums : [GridItem()], content: /*@START_MENU_TOKEN@*/{
+                            //                                        ForEach(desireCardList, id:\.card_id){ card in
+                            //                                            CardItemView(card: card)
+                            //                                        }
+                            //                                    })
+                            //                                }
+                            //                            }else{
+                            //                                ScrollView(.horizontal){
+                            //                                    LazyHGrid(rows: [GridItem()], content:{
+                            //                                        ForEach(desireCardList, id:\.card_id){ card in
+                            //                                            CardItemView(card: card)
+                            //                                        }
+                            //                                    }).frame(height:height*0.4).padding(.leading)
+                            //                                }
+                            //                            }
                             
                             VStack(alignment: .leading){
                                 Divider().padding(.top)
@@ -122,7 +110,9 @@ struct HomeView: View {
                             EmptyView()
                         }
                     }
-                    if showMenu{
+                }
+                if showMenu{
+                    ScrollView{
                         MenuView()
                             .frame(width: width/1.5)
                             .transition(.move(edge: .leading))

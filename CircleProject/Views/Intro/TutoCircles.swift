@@ -141,7 +141,7 @@ struct TutoCircles: View {
 struct TutoCircles_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            TutoCircles(circle: CircleObject(name: "Familial", image: Image("CercleFamille"), color: Color.black, type: .familial, size: 0.25))
+            TutoCircles(circle: CircleObject(id: 1, name: "Familial", image: Image("CercleFamille"), color: Color.black, type: .familial, size: 0.25))
         }
     }
 }

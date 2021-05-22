@@ -32,10 +32,13 @@ struct FbLogin: View {
                             logged = true
                             
                             let request = GraphRequest(graphPath: "me", parameters: ["fields" : "name"])
+//                            let request = GraphRequest(graphPath: "me/friends", parameters: ["fields" : "name"])
+                            
                             request.start {(_,res,_) in
                                 guard let profileData = res as? [String : Any] else{return}
                                 name = (profileData["name"] as? String)!
                                 self.isMainMenuPresented.toggle()
+//                                dump(profileData)
                             }
                         }
                     }

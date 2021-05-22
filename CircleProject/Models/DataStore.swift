@@ -57,26 +57,13 @@ struct ImageUpload: Decodable {
 struct messagesServer: Decodable{
     var status: Int
     var status_message: String
+    var user_id: String?
 }
 
 struct SellCategory: Identifiable {
     var id = UUID()
     var name: String
     var children:[SellCategory] = []
-    static var categoriesList: [SellCategory] = [
-        SellCategory(name: "Emploi",children:[SellCategory(name: "Offres d'emploi"),SellCategory(name: "Offres d'emploi cadres"),SellCategory(name: "Formations professionnelles")]),
-        SellCategory(name: "Véhicules",children:[SellCategory(name: "Voitures"),SellCategory(name: "Motos"),SellCategory(name: "Caravaning"),SellCategory(name: "Utilitaires"),SellCategory(name: "Camions"),SellCategory(name: "Nautisme"),SellCategory(name: "Equipement auto"),SellCategory(name: "Equipement moto"),SellCategory(name: "Equipement caravaning"),SellCategory(name: "Equipement nautisme")]),
-        SellCategory(name: "Immobilier",children:[SellCategory(name: "Ventes immobilières"),SellCategory(name: "Immobilier neuf"),SellCategory(name: "Locations"),SellCategory(name: "Colocations"),SellCategory(name: "Bureaux & Commerces")]),
-        SellCategory(name: "Vacances", children: [SellCategory(name: "Locations & Gites"),SellCategory(name: "Chambres d'hôtes"),SellCategory(name: "Campings"),SellCategory(name: "Hôtels"),SellCategory(name: "Hébergements insolites"),SellCategory(name: "Ventes privées vacances")]),
-        SellCategory(name: "Loisirs",children:[SellCategory(name: "DVD-Films"),SellCategory(name: "CD-Musique"),SellCategory(name: "Livres"),SellCategory(name: "Vélos"),SellCategory(name: "Sports & Hobbies"),SellCategory(name: "Instruments de musique"),SellCategory(name: "Collection"),SellCategory(name: "Jeux & Jouets"),SellCategory(name: "Vins & Gastronomie")]),
-        SellCategory(name: "Animaux",children:[SellCategory(name: "Animaux")]),
-        SellCategory(name: "Mode",children:[SellCategory(name: "Vêtements"),SellCategory(name: "Chaussures"),SellCategory(name: "Accessoires & Bagagerie"),SellCategory(name: "Montres & Bijoux"),SellCategory(name: "Equipement bébé"),SellCategory(name: "Vêtements bébé"),SellCategory(name: "Luxe & Tendances")]),
-        SellCategory(name: "Multimédia",children:[SellCategory(name: "Informatique"),SellCategory(name: "Consoles & Jeux vidéo"),SellCategory(name: "Image & Son"),SellCategory(name: "Téléphonie")]),
-        SellCategory(name: "Services", children:[SellCategory(name: "Prestations de services"),SellCategory(name: "Billetterie"),SellCategory(name: "Evènements"),SellCategory(name: "Cours particuliers"),SellCategory(name: "Covoiturage")]),
-        SellCategory(name: "Maison",children:[SellCategory(name: "Ameublement"),SellCategory(name: "Electroménager"),SellCategory(name: "Arts de la table"),SellCategory(name: "Décoration"),SellCategory(name: "Linge de maison"),SellCategory(name: "Bricolage"),SellCategory(name: "Jardinage")]),
-        SellCategory(name: "Matériel professionnel",children:[SellCategory(name: "Matériel agricole"),SellCategory(name: "Transport - Manutention"),SellCategory(name: "BTP - Chantier gros-oeuvre"),SellCategory(name: "Outillage - Matériaux 2nd-oeuvre"),SellCategory(name: "Equipements industriels"),SellCategory(name: "Restauration - Hôtellerie"),SellCategory(name: "Fournitures de bureau"),SellCategory(name: "Commerces & Marchés"),SellCategory(name: "Matériel médical")]),
-        SellCategory(name: "Divers", children: [SellCategory(name: "Divers")])
-    ]
 }
 
 class Deal: ObservableObject {
@@ -120,7 +107,8 @@ struct Circles {
 }
 
 class User: ObservableObject, Decodable, Identifiable {
-    @Published var id: Int = 0
+    @Published var userCircleUserId: String
+    @Published var id: String
     @Published var name: String
     @Published var email: String
     @Published var password: String
@@ -134,19 +122,26 @@ class User: ObservableObject, Decodable, Identifiable {
         case name = "username"
         case id = "user_id"
         case userImage = "user_image"
+        case userCircleUserId = "user_circle_users_id"
         case email,password,age,location,gender,categories
     }
     
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
            
-        self.id = try values.decode(Int.self, forKey: .id)
+        self.id = try values.decode(String.self, forKey: .id)
            if let value = try? values.decode(String.self, forKey: .name) {
                self.name = value
            } else {
                self.name = ""
            }
            
+        if let value = try? values.decode(String.self, forKey: .userCircleUserId) {
+            self.userCircleUserId = value
+        } else {
+            self.userCircleUserId = ""
+        }
+        
         if let value = try? values.decode(String.self, forKey: .email) {
             self.email = value
         } else {
@@ -191,7 +186,9 @@ class User: ObservableObject, Decodable, Identifiable {
        }
 
     
-    init(name: String = "", email: String = "",password:String = "",userImage:String = "",age:String = "",gender:String = "",location:String = "",categories:[String] = []) {
+    init(userCircleUserId: String = "", id: String = "",name: String = "", email: String = "",password:String = "",userImage:String = "",age:String = "",gender:String = "",location:String = "",categories:[String] = []) {
+        self.userCircleUserId = userCircleUserId
+        self.id = id
         self.name = name
         self.email = email
         self.password = password
@@ -219,10 +216,21 @@ struct Notification: Codable {
     enum CodingKeys: String, CodingKey {
         case receiverId = "receiver_id"
         case senderId = "sender_id"
+        case circleId = "circle_id"
         case text,id
     }
     var id: String
     var receiverId: String
     var senderId: String
+    var circleId: String
     var text: String
+}
+
+struct applicationCircle: Codable {
+    enum CodingKeys: String, CodingKey {
+        case id = "circle_id"
+        case name = "circle_name"
+    }
+    var id: String
+    var name: String
 }

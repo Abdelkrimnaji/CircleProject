@@ -44,9 +44,93 @@ struct Api {
     }
     
     func getObjects(completion: @escaping ([CardItem]?,Error?) -> ()) {
-        let url = URL(string: "http://localhost/CircleApiV2/object/list")!
+        let url = URL(string: "http://localhost/CircleApiV2/index.php/object/all")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request){ (data,response,error) in
+            if error != nil{
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+                return
+            }
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(nil,NSError(domain: "CircleProjetDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"Pas d'annonces disponible"]))
+                }
+                return
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                DispatchQueue.main.async {
+                    completion(nil,NSError(domain: "CircleProjetDomain", code: 999, userInfo: [NSLocalizedDescriptionKey:"Une erreur est survenu."]))
+                }
+                return
+            }
+            do{
+                let object = try JSONDecoder().decode([CardItem].self, from: data)
+                DispatchQueue.main.async {
+                    completion(object,nil)
+                }
+            }catch(let error){
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func getObjectsbyCircle(circleId: Int, userId: String, completion: @escaping ([CardItem]?,Error?) -> ()) {
+        let url = URL(string: "http://localhost/CircleApiV2/index.php/object/circle")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let body = "circleId=\(circleId)&userId=\(userId)"
+        request.httpBody = body.data(using: .utf8)
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request){ (data,response,error) in
+            if error != nil{
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+                return
+            }
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(nil,NSError(domain: "CircleProjetDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"Pas d'annonces disponible"]))
+                }
+                return
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                DispatchQueue.main.async {
+                    completion(nil,NSError(domain: "CircleProjetDomain", code: 999, userInfo: [NSLocalizedDescriptionKey:"Une erreur est survenu."]))
+                }
+                return
+            }
+            do{
+                let object = try JSONDecoder().decode([CardItem].self, from: data)
+                DispatchQueue.main.async {
+                    completion(object,nil)
+                }
+            }catch(let error){
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func getObjectsbyCategory(categoryId: String,completion: @escaping ([CardItem]?,Error?) -> ()) {
+        let url = URL(string: "http://localhost/CircleApiV2/index.php/object/category")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let body = "categoryId=\(categoryId)"
+        request.httpBody = body.data(using: .utf8)
         
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request){ (data,response,error) in
@@ -246,8 +330,51 @@ struct Api {
         task.resume()
     }
     
+    func checkMail(email:String,completion: @escaping (messagesServer?,Error?) -> ()) {
+        let url = URL(string: "http://localhost/CircleApiV2/index.php/mail/check")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let body = "email=\(email)"
+        request.httpBody = body.data(using: .utf8)
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request){ (data,response,error) in
+            if error != nil {
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+                return
+            }
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(nil,NSError(domain: "CircleProjetDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"L'adresse mail est invalide'."]))
+                }
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                DispatchQueue.main.async {
+                    completion(nil,NSError(domain: "CircleProjetDomain", code: 999, userInfo: [NSLocalizedDescriptionKey:"Une erreur est survenu."]))
+                }
+                return
+            }
+            do{
+                let requestResponse = try JSONDecoder().decode(messagesServer.self, from: data)
+                DispatchQueue.main.async {
+                    completion(requestResponse,nil)
+                }
+            }catch(let error){
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+            }
+        }
+        task.resume()
+    }
+    
     func sendMail(email:String,completion: @escaping (messagesServer?,Error?) -> ()) {
-        let url = URL(string: "http://localhost/CircleApiV2/index.php/mail")!
+        let url = URL(string: "http://localhost/CircleApiV2/index.php/mail/send")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
@@ -483,12 +610,15 @@ struct Api {
         task.resume()
     }
     
-    func getNotifications(completion: @escaping ([Notification]?,Error?) -> ()) {
-        guard let url = URL(string: "http://localhost/CircleApiV2/index.php/message")else{
+    func getNotifications(userId: String,completion: @escaping ([Notification]?,Error?) -> ()) {
+        guard let url = URL(string: "http://localhost/CircleApiV2/index.php/message/list")else{
             return
         }
         var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        request.httpMethod = "POST"
+        
+        let body = "userId=\(userId)"
+        request.httpBody = body.data(using: .utf8)
         
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: request){ (data,response,error) in
@@ -509,6 +639,292 @@ struct Api {
                 let notifications = try JSONDecoder().decode([Notification].self, from: data)
                 DispatchQueue.main.async {
                     completion(notifications,nil)
+                }
+            }catch(let error){
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func sendNotification(senderId: Int,receiverId: Int, circleId: Int,completion: @escaping (messagesServer?,Error?) -> ()) {
+        guard let url = URL(string: "http://localhost/CircleApiV2/index.php/message/send")else{
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let body = "senderId=\(senderId)&receiverId=\(receiverId)&circleId=\(circleId)"
+        request.httpBody = body.data(using: .utf8)
+        
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request){ (data,response,error) in
+            
+            guard let data = data, error == nil else {
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+                return
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+                return
+            }
+            do{
+                let requestResponse = try JSONDecoder().decode(messagesServer?.self, from: data)
+                DispatchQueue.main.async {
+                    completion(requestResponse,nil)
+                }
+            }catch(let error){
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func addUserToCircle(senderId: String,receiverId: String, circleId: String,completion: @escaping (messagesServer?,Error?) -> ()) {
+        let url = URL(string: "http://localhost/CircleApiV2/index.php/user/add")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let body = "senderId=\(senderId)&receiverId=\(receiverId)&circleId=\(circleId)"
+        request.httpBody = body.data(using: .utf8)
+        
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request){ (data,response,error) in
+            if error != nil {
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+                return
+            }
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(nil,NSError(domain: "CircleProjetDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"Erreur."]))
+                }
+                return
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                DispatchQueue.main.async {
+                    completion(nil,NSError(domain: "CircleProjetDomain", code: 999, userInfo: [NSLocalizedDescriptionKey:"Une erreur est survenu."]))
+                }
+                return
+            }
+            do{
+                let requestResponse = try JSONDecoder().decode(messagesServer.self, from: data)
+                DispatchQueue.main.async {
+                    completion(requestResponse,nil)
+                }
+            }catch(let error){
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func getUserContacts(circleId:Int,userId: String,completion: @escaping ([User]?,Error?) -> ()) {
+        let url = URL(string: "http://localhost/CircleApiV2/index.php/user/contact")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let circle = String(circleId)
+        let body = "circleId=\(circle)&userId=\(userId)"
+        request.httpBody = body.data(using: .utf8)
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request){ (data,response,error) in
+            
+            guard let data = data, error == nil else {
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+                return
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+                return
+            }
+            
+            do{
+                let users = try JSONDecoder().decode([User].self, from: data)
+                DispatchQueue.main.async {
+                    completion(users,nil)
+                }
+            }catch(let error){
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func deleteUserFromCircle(userCircleUserId: String,completion: @escaping (messagesServer?,Error?) -> ()) {
+        let url = URL(string: "http://localhost/CircleApiV2/index.php/user/delete")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let body = "userCircleUserId=\(userCircleUserId)"
+        request.httpBody = body.data(using: .utf8)
+        
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request){ (data,response,error) in
+            if error != nil {
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+                return
+            }
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(nil,NSError(domain: "CircleProjetDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"Erreur."]))
+                }
+                return
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                DispatchQueue.main.async {
+                    completion(nil,NSError(domain: "CircleProjetDomain", code: 999, userInfo: [NSLocalizedDescriptionKey:"Une erreur est survenu."]))
+                }
+                return
+            }
+            do{
+                let requestResponse = try JSONDecoder().decode(messagesServer.self, from: data)
+                DispatchQueue.main.async {
+                    completion(requestResponse,nil)
+                }
+            }catch(let error){
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func updateUserCircle(userCircleUserId: String,senderId: String, circleId: String,completion: @escaping (messagesServer?,Error?) -> ()) {
+        let url = URL(string: "http://localhost/CircleApiV2/index.php/user/update")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let body = "senderId=\(senderId)&userCircleUserId=\(userCircleUserId)&circleId=\(circleId)"
+        request.httpBody = body.data(using: .utf8)
+        
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request){ (data,response,error) in
+            if error != nil {
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+                return
+            }
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(nil,NSError(domain: "CircleProjetDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"Erreur."]))
+                }
+                return
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                DispatchQueue.main.async {
+                    completion(nil,NSError(domain: "CircleProjetDomain", code: 999, userInfo: [NSLocalizedDescriptionKey:"Une erreur est survenu."]))
+                }
+                return
+            }
+            do{
+                let requestResponse = try JSONDecoder().decode(messagesServer.self, from: data)
+                DispatchQueue.main.async {
+                    completion(requestResponse,nil)
+                }
+            }catch(let error){
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func getCircles(completion: @escaping ([applicationCircle]?,Error?) -> ()) {
+        let url = URL(string: "http://localhost/CircleApiV2/index.php/circle")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request){ (data,response,error) in
+            
+            guard let data = data, error == nil else {
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+                return
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+                return
+            }
+            
+            do{
+                let circles = try JSONDecoder().decode([applicationCircle].self, from: data)
+                DispatchQueue.main.async {
+                    completion(circles,nil)
+                }
+            }catch(let error){
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func searchObject(object:String,completion: @escaping ([CardItem]?,Error?) -> ()) {
+        let url = URL(string: "http://localhost/CircleApiV2/index.php/object/search")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let body = "object=\(object)"
+        request.httpBody = body.data(using: .utf8)
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request){ (data,response,error) in
+            if error != nil{
+                DispatchQueue.main.async {
+                    completion(nil,error)
+                }
+                return
+            }
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(nil,NSError(domain: "CircleProjetDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"Pas d'annonces disponible"]))
+                }
+                return
+            }
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                DispatchQueue.main.async {
+                    completion(nil,NSError(domain: "CircleProjetDomain", code: 999, userInfo: [NSLocalizedDescriptionKey:"Une erreur est survenu."]))
+                }
+                return
+            }
+            do{
+                let object = try JSONDecoder().decode([CardItem].self, from: data)
+                DispatchQueue.main.async {
+                    completion(object,nil)
                 }
             }catch(let error){
                 DispatchQueue.main.async {
